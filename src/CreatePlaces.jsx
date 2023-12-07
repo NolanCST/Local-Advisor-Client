@@ -14,6 +14,10 @@ function CreatePlaces() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const handleFile = (e) => {
+    const file = e.target.files[0];
+    setPlaceData({ ...placeData, image: file });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,12 +51,21 @@ function CreatePlaces() {
   return (
     <div className="CreatePlacesContainer">
       <div className="wrapper">
-        <form onSubmit={handleSubmit}>
+        <form enctype="multipart/form-data" onSubmit={handleSubmit}>
+          <label htmlFor="name">Titre de l'activité:</label>
           <input type="text" name="name" onChange={handleChange} />
+          <label htmlFor="adress">Adresse:</label>
           <input type="text" name="adress" onChange={handleChange} />
+          <label htmlFor="city">Ville:</label>
           <input type="text" name="city" onChange={handleChange} />
+          <label htmlFor="zip_code">Code Postal:</label>
           <input type="number" name="zip_code" onChange={handleChange} />
           <input type="select" name="categories" onChange={handleChange} />
+          <label htmlFor="description">Description:</label>
+          <input type="textarea" name="description" onChange={handleChange} />
+          <label htmlFor="image">Sélectionner une image:</label>
+          <input type="file" name="image" onChange={handleFile} />
+          <button type="submit">Enregistrer</button>
         </form>
       </div>
     </div>
