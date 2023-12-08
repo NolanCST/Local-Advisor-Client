@@ -23,14 +23,16 @@ function Home() {
   const renderPlaces = () => {
     return places?.map((element, index) => {
       return (
-        <div key={index}>
-          <p>{element.name}</p>
-          <p>{element.address}</p>
-          <p>{element.zip_code}</p>
-          <p>{element.city}</p>
-          <p>{element.description}</p>
-          {/* <p>{element.image}</p> */}
-        </div>
+        <a href="/detailsPlace">
+          <div key={index}>
+            <p>{element.name}</p>
+            <p>{element.address}</p>
+            <p>{element.zip_code}</p>
+            <p>{element.city}</p>
+            <p>{element.description}</p>
+            {/* <p>{element.image}</p> */}
+          </div>
+        </a>
       );
     });
   };
