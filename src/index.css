@@ -1,7 +1,13 @@
 :root {
-   --clr-1: #231202;
-   --clr-2: #a11202;
-   --clr-3: #f59004;
-   --clr-4: #f6e887;
-   --clr-5: #fffdfa;
+    --clr-1: #231202;
+    --clr-2: #a11202;
+    --clr-3: #f59004;
+    --clr-4: #f6e887;
+    --clr-5: #fffdfa;
+}
+body {
+    background: linear-gradient(135deg, var(--clr-2), var(--clr-1));
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }

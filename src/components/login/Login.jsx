@@ -87,32 +87,40 @@ function Login() {
 
     return (
         <div className="LoginContainer">
-            <div className="loginEmail">
+            <div>
                 <input
+                    className="loginEmail"
                     type="email"
                     placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </div>
-            <div className="loginPassword">
+            <div>
                 <input
+                    className="loginPassword"
                     type="password"
                     placeholder="Mot de Passe"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
-            <div className="loginButton">
-                <button onClick={handleLogin}>Login</button>
+            <div>
+                <button className="loginButton" onClick={handleLogin}>
+                    Se connecter
+                </button>
+            </div>
+            <div>
+                <button className="buttonRegister" onClick={gotoRegister}>
+                    Créer un Compte
+                </button>
+            </div>
+            <div>
+                <button className="buttonOublier" onClick={handleOublier}>
+                    Mot de passe oublié ?
+                </button>
             </div>
             {message && <p>{message}</p>}
-            <div className="buttonRegister">
-                <button onClick={gotoRegister}>Créer un Compte</button>
-            </div>
-            <div className="buttonOublier">
-                <button onClick={handleOublier}>Mot de passe oublié ?</button>
-            </div>
         </div>
     );
 }

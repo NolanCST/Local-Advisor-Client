@@ -1,21 +1,3 @@
-/* :root {
-    --clr-1: #231202;
-    --clr-2: #a11202;
-    --clr-3: #f59004;
-    --clr-4: #f6e887;
-    --clr-5: #fffdfa;
-} */
-
-body {
-    background: linear-gradient(135deg, var(--clr-2), var(--clr-1));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
 .RegisterContainer {
     background: rgba(255, 255, 255, 0.15);
     border-radius: 10px;
@@ -24,14 +6,24 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px; /* Espacement entre les éléments */
     align-items: center;
+    max-width: 300px;
+    width: 100%;
+    box-sizing: border-box; /* largeur maximale comprend padding et bordure */
+    margin-top: 15%; /* Centrer horizontalement */
+    margin-left: 40%;
 }
 
-input,
-select,
-button {
-    width: 100%;
+.RegisterLastname,
+.RegisterFirstname,
+.RegisterEmail,
+.RegisterPassword,
+.RegisterPseudo,
+.RegisterBirthday,
+.RegisterStatus,
+.RegisterButton {
+    width: calc(100% - 20px);
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -40,21 +32,22 @@ button {
     color: white;
     font-size: 16px;
     outline: none;
+    margin-bottom: 2%;
+    align-items: center;
+    box-sizing: border-box; /* largeur maximale comprend padding et bordure */
 }
 
-input::placeholder,
-select::placeholder {
+.RegisterEmail::placeholder,
+.RegisterPassword::placeholder {
     color: rgba(255, 255, 255, 0.6);
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-select {
-    height: 40px;
+.RegisterBirthday {
+    height: 40px; /* hauteur */
 }
 
-button {
+.RegisterStatus,
+.RegisterStatus:hover {
     cursor: pointer;
     transition: background 0.3s ease;
 }
@@ -65,4 +58,18 @@ button:hover {
 
 p {
     color: white;
+}
+
+/* Media query pour les appareils de petite taille */
+@media screen and (max-width: 768px) {
+    .RegisterContainer {
+        width: 80%;
+    }
+}
+
+/* Media query pour les appareils de très petite taille */
+@media screen and (max-width: 480px) {
+    .RegisterContainer {
+        width: 90%;
+    }
 }
