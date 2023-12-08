@@ -8,7 +8,9 @@ function Login() {
     const [password, setPassword] = useState(
         localStorage.getItem("password") || ""
     );
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState(
+        localStorage.getItem("message") || ""
+    );
     const navigate = useNavigate();
 
     const handleLogin = async () => {
@@ -19,19 +21,27 @@ function Login() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    email,
-                    password,
+                    email: email,
+                    password: password,
                 }),
             };
-
-            const response = await fetch("/login", options);
-            const data = await response.json();
 
             setEmail(""); // Effacer les champs email et mot de passe
             setPassword("");
 
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/login`,
+                options
+            );
+
+            const data = await response.json();
+
             if (response.ok) {
                 setMessage(data.message); // Authentification réussie
+                localStorage.setItem("email", email);
+                localStorage.setItem("password", password);
+                localStorage.setItem("token", data.token);
+                navigate("/");
             } else {
                 setMessage(data.message); // Erreur d'authentification
             }
@@ -47,15 +57,18 @@ function Login() {
 
     const handleOublier = async () => {
         try {
-            const response = await fetch("/send-reset-email", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    email,
-                }),
-            });
+            const response = await fetch(
+                "${import.meta.env.VITE_API_URL}/send-reset-email",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                    }),
+                }
+            );
 
             const data = await response.json();
 
