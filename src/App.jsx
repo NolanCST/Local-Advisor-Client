@@ -14,10 +14,10 @@ function App() {
             path: "/login",
             element: <Login />,
         },
-        // {
-        //     path: "/",
-        //     element: <Home />,
-        // },
+        {
+            path: "/",
+            element: <Home />,
+        },
     ]);
     return (
         <>
