@@ -24,16 +24,16 @@ function Home() {
    const renderPlaces = () => {
       return places?.map((element, index) => {
          return (
-            <Link to={`/DetailsPlace`}>
-               <div key={index}>
+            <div key={index}>
+               <Link to={`/DetailsPlace/${element.id}`}>
                   <p>{element.name}</p>
                   <p>{element.address}</p>
                   <p>{element.zip_code}</p>
                   <p>{element.city}</p>
                   <p>{element.description}</p>
                   {/* <p>{element.image}</p> */}
-               </div>
-            </Link>
+               </Link>
+            </div>
          );
       });
    };
