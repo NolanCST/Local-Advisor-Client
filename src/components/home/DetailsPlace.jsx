@@ -37,15 +37,38 @@ function DetailsPlace() {
     });
   };
 
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/DetailsPlace/${place.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response == true) {
+        console.log("Lieu supprimé avec succès");
+      } else {
+        console.log("ntm coté react");
+      }
+    } catch (e) {
+      console.error("Erreur lors de la suppression du lieu", e);
+    }
+  };
+
   return (
     <div className="detailsPlaceContainer">
       <div>{/* Emplacement navbar */}</div>
       <section>
         <h1>Détails du lieu</h1>
         <div>{renderPlace()}</div>
+        <button onClick={handleDelete}>Supprimer</button>
       </section>
       <footer>{/* emplacement footer */}</footer>
     </div>
   );
 }
+
 export default DetailsPlace;
