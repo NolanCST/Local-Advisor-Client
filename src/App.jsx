@@ -6,29 +6,29 @@ import Home from "./components/home/Home";
 import DetailsPlace from "./components/home/DetailsPlace";
 
 function App() {
-   const router = createBrowserRouter([
-      {
-         path: "/",
-         element: <Home />,
-      },
-      {
-         path: "/DetailsPlace/:id",
-         element: <DetailsPlace />,
-      },
-      {
-         path: "/register",
-         element: <Register />,
-      },
-      {
-         path: "/login",
-         element: <Login />,
-      },
-   ]);
-   return (
-      <>
-         <RouterProvider router={router} />
-      </>
-   );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/DetailsPlace/:id",
+      element: <DetailsPlace />,
+    },
+    {
+      path: "/register",
+      element: <Register />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+  ]);
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;
