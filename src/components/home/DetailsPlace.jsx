@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import "./detailsPlace.css";
+import { useLocation } from "react-router-dom";
 
 function DetailsPlace() {
+   const placeId = useLocation().state;
    const [place, setPlace] = useState([]);
    const [ratings, setRatings] = useState([]);
    const [avgRating, setAvgRating] = useState([]);
@@ -28,6 +30,18 @@ function DetailsPlace() {
    useEffect(() => {
       recupPlace();
    }, []);
+   
+   const handleDelete = async () => {
+    let result = await fetch(
+      `${import.meta.env.VITE_API_URL}/destroy/${placeId}`,
+      {
+        method: "DELETE",
+      }
+    );
+    result = await result.json();
+    console.warn(result);
+    window.location.href = "/";
+  }
 
    const renderPlace = () => {
       return (
@@ -91,10 +105,10 @@ function DetailsPlace() {
             <section>
                <h1>Détails du lieu</h1>
                <div>{renderPlace()}</div>
+               <button onClick={handleDelete}>Supprimer</button>
             </section>
-            <footer>{/* emplacement footer */}</footer>
-         </div>
-         <div id="review">
+            <section>
+            <div id="review">
             <div className="span1">
                <h2 className="titleComment">Donnez nous votre avis !</h2>
                <form className="form-horizontal" id="ratingForm" onSubmit={createRate} name="ratingForm">
@@ -135,7 +149,11 @@ function DetailsPlace() {
                <div>{renderRates()}</div>
             </div>
          </div>
+            </section>
+            <footer>{/* emplacement footer */}</footer>
+         </div>
       </>
-   );
+   );      
 }
+
 export default DetailsPlace;
