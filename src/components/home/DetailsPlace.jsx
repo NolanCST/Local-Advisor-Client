@@ -26,11 +26,11 @@ function DetailsPlace() {
       return place?.map((element, index) => {
          return (
             <div key={index}>
-               <p>{element.name}</p>
-               <p>{element.address}</p>
-               <p>{element.zip_code}</p>
-               <p>{element.city}</p>
-               <p>{element.description}</p>
+               <p>Nom de l'établissement : {element.name}</p>
+               <p>Adresse : {element.address}</p>
+               <p>Code postal : {element.zip_code}</p>
+               <p>Ville: {element.city}</p>
+               <p>Description : {element.description}</p>
                {/* <p>{element.image}</p> */}
             </div>
          );
