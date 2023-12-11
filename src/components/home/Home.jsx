@@ -25,7 +25,7 @@ function Home() {
     return places?.map((element, index) => {
       return (
         <div key={index}>
-          <Link to={`/DetailsPlace/${element.id}`}>
+          <Link to={`/DetailsPlace`} state={element.id}>
             <p>{element.name}</p>
             <p>{element.address}</p>
             <p>{element.zip_code}</p>

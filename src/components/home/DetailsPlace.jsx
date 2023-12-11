@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import "./detailsPlace.css";
+import { useLocation } from "react-router-dom";
 
 function DetailsPlace() {
-  const [place, setPlace] = useState([]);
+  const [places, setPlaces] = useState([]);
+  const placeId = useLocation().state;
 
   const recupPlace = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/place/${place}`
+        `${import.meta.env.VITE_API_URL}/place/${places}`
       );
       const data = await response.json();
-      setPlace(data);
-      console.log(data);
+      setPlaces(data);
+      // console.log(data);
     } catch (e) {
       const $message = "Erreur dans la récupération du fetch";
-      console.log($message);
+      // console.log($message);
     }
   };
 
@@ -23,40 +25,32 @@ function DetailsPlace() {
   }, []);
 
   const renderPlace = () => {
-    return place?.map((element, index) => {
-      return (
-        <div key={index}>
-          <p>Nom de l'établissement : {element.name}</p>
-          <p>Adresse : {element.address}</p>
-          <p>Code postal : {element.zip_code}</p>
-          <p>Ville: {element.city}</p>
-          <p>Description : {element.description}</p>
-          {/* <p>{element.image}</p> */}
-        </div>
-      );
-    });
+    return places
+      ?.filter((place) => place.id == placeId)
+      .map((place) => {
+        return (
+          <div key={place.id}>
+            <p>Nom de l'établissement : {place.name}</p>
+            <p>Adresse : {place.address}</p>
+            <p>Code postal : {place.zip_code}</p>
+            <p>Ville: {place.city}</p>
+            <p>Description : {place.description}</p>
+            {/* <p>{place.image}</p> */}
+          </div>
+        );
+      });
   };
 
-  const handleDelete = async () => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/DetailsPlace/${place.id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response == true) {
-        console.log("Lieu supprimé avec succès");
-      } else {
-        console.log("ntm coté react");
+  async function handleDelete(event) {
+    let result = await fetch(
+      `${import.meta.env.VITE_API_URL}/destroy/${placeId}`,
+      {
+        method: "DELETE",
       }
-    } catch (e) {
-      console.error("Erreur lors de la suppression du lieu", e);
-    }
-  };
+    );
+    result = await result.json();
+    console.warn(result);
+  }
 
   return (
     <div className="detailsPlaceContainer">
