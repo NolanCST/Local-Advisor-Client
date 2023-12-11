@@ -42,7 +42,6 @@ function DetailsPlace() {
   };
 
   async function handleDelete(event) {
-    event.preventDefault();
     let result = await fetch(
       `${import.meta.env.VITE_API_URL}/destroy/${placeId}`,
       {
@@ -51,6 +50,7 @@ function DetailsPlace() {
     );
     result = await result.json();
     console.warn(result);
+    window.location.href = "/";
   }
 
   return (
