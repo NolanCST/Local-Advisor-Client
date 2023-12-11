@@ -3,15 +3,22 @@ import "./detailsPlace.css";
 
 function DetailsPlace() {
    const [place, setPlace] = useState([]);
+   const [ratings, setRatings] = useState([]);
+   const [avgRating, setAvgRating] = useState([]);
+   const [avgStarRating, setAvgStarRating] = useState([]);
+   const [ratingsCount, setRatingsCount] = useState([]);
    const [review, setReview] = useState([]);
    const [rate, setRate] = useState([]);
 
    const recupPlace = async () => {
       try {
-         const response = await fetch(`${import.meta.env.VITE_API_URL}/place/${place}`);
+         const response = await fetch(`${import.meta.env.VITE_API_URL}/places/1`);
          const data = await response.json();
-         console.log(data);
-         setPlace(data);
+         setPlace(data.place);
+         setRatings(data.ratings);
+         setAvgRating(data.avgRating);
+         setAvgStarRating(data.avgStarRating);
+         setRatingsCount(data.ratingsCount);
       } catch (e) {
          const $message = "Erreur dans la récupération du fetch";
          console.log($message);
@@ -23,21 +30,19 @@ function DetailsPlace() {
    }, []);
 
    const renderPlace = () => {
-      return place?.map((element, index) => {
-         return (
-            <div key={index}>
-               <p>Nom de l'établissement : {element.name}</p>
-               <p>Adresse : {element.address}</p>
-               <p>Code postal : {element.zip_code}</p>
-               <p>Ville: {element.city}</p>
-               <p>Description : {element.description}</p>
-               {/* <p>{element.image}</p> */}
-            </div>
-         );
-      });
+      return (
+         <div>
+            <p>Nom de l'établissement : {place.name}</p>
+            <p>Adresse : {place.address}</p>
+            <p>Code postal : {place.zip_code}</p>
+            <p>Ville: {place.city}</p>
+            <p>Description : {place.description}</p>
+            {/* <p>{place.image}</p> */}
+         </div>
+      );
    };
 
-   const getRate = async (e) => {
+   const createRate = async (e) => {
       e.preventDefault();
       let options = {
          method: "POST",
@@ -51,7 +56,6 @@ function DetailsPlace() {
             user_id: 1,
          }),
       };
-      console.log("debut");
       await fetch(`${import.meta.env.VITE_API_URL}/rates/create`, options)
          .then((response) => response.json())
          .then((data) => {
@@ -61,6 +65,23 @@ function DetailsPlace() {
                alert(data.message);
             }
          });
+   };
+
+   const renderRates = () => {
+      return ratings?.map((element, index) => {
+         const stars = [];
+
+         for (let i = 0; i < element.rate; i++) {
+            stars.push(<span key={i}>⭐</span>);
+         }
+
+         return (
+            <div key={index}>
+               {stars}
+               <p>{element.review}</p>
+            </div>
+         );
+      });
    };
 
    return (
@@ -76,7 +97,7 @@ function DetailsPlace() {
          <div id="review">
             <div className="span1">
                <h2 className="titleComment">Donnez nous votre avis !</h2>
-               <form className="form-horizontal" id="ratingForm" onSubmit={getRate} name="ratingForm">
+               <form className="form-horizontal" id="ratingForm" onSubmit={createRate} name="ratingForm">
                   <label>Votre note</label>
                   <div className="rate">
                      <input type="radio" id="star5" name="rate" value="5" onChange={(e) => setRate(e.target.value)} />
@@ -109,27 +130,10 @@ function DetailsPlace() {
                   </div>
                </form>
             </div>
-            {/* <div className="span2">
-                <h2 className="titleComment">Commentaires</h2>
-                @if(count($ratings)>0)
-                    @foreach($ratings as $rating)
-                        <div className="usersComments">
-                            <div className="starsComment">
-                            <?php
-                                $count=1;
-                                while($count<=$rating['rate']) {?>
-                                    <span>&#9733;</span>
-                            <?php $count++; }?>
-                            </div>
-                            <p>{{$rating['review']}}</p>
-                            <p>Par {{$rating['user']['name']}}</p>
-                            <p>Posté le: {{date("d-m-Y H:i", strtotime($rating['created_at']))}}</p>
-                        </div>
-                    @endforeach
-                @else
-                    <p className="noComment"><b>Aucun commentaires n'est disponible pour ce livre</b></p>
-                @endif
-            </div> */}
+            <div className="span2">
+               <h2 className="titleComment">Commentaires</h2>
+               <div>{renderRates()}</div>
+            </div>
          </div>
       </>
    );
