@@ -11,6 +11,8 @@ function Login() {
     const [message, setMessage] = useState(
         localStorage.getItem("message") || ""
     );
+    const [showForgotEmail, setShowForgotEmail] = useState(false);
+    const [forgotEmail, setForgotEmail] = useState("");
     const navigate = useNavigate();
 
     const handleLogin = async () => {
@@ -58,24 +60,23 @@ function Login() {
     const handleOublier = async () => {
         try {
             const response = await fetch(
-                "${import.meta.env.VITE_API_URL}/send-reset-email",
+                `${import.meta.env.VITE_API_URL}/send-reset-email`,
                 {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        email: email,
+                        email: forgotEmail,
                     }),
                 }
             );
 
-            const data = await response.json();
-
             if (response.ok) {
-                setMessage(data.message); // Email envoyé avec succès
+                setMessage("Email envoyé avec succès");
             } else {
-                setMessage(data.message); // Erreur lors de l'envoi de l'email
+                const text = await response.text();
+                setMessage(text); // Affiche le message d'erreur brut s'il n'est pas au format JSON
             }
         } catch (error) {
             console.error(
@@ -116,10 +117,33 @@ function Login() {
                 </button>
             </div>
             <div>
-                <button className="buttonOublier" onClick={handleOublier}>
+                <button
+                    className="buttonOublier"
+                    onClick={() => setShowForgotEmail(true)}
+                >
                     Mot de passe oublié ?
                 </button>
             </div>
+            {showForgotEmail && (
+                <div>
+                    <input
+                        className="forgotEmail"
+                        type="email"
+                        placeholder="Entrez votre adresse email"
+                        value={forgotEmail}
+                        onChange={(e) => setForgotEmail(e.target.value)}
+                    />
+                    <button className="buttonEnvoyer" onClick={handleOublier}>
+                        Envoyer
+                    </button>
+                    <button
+                        className="buttonAnnuler"
+                        onClick={() => setShowForgotEmail(false)}
+                    >
+                        Annuler
+                    </button>
+                </div>
+            )}
             {message && <p>{message}</p>}
         </div>
     );
