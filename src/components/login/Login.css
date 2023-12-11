@@ -1,56 +1,56 @@
 body {
-    background: linear-gradient(135deg, var(--clr-2), var(--clr-1));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, var(--clr-2), var(--clr-1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
 .LoginContainer {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
 }
 
 input,
 button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(5px);
-    color: white;
-    font-size: 16px;
-    outline: none;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(5px);
+  color: white;
+  font-size: 16px;
+  outline: none;
 }
 
 input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 input[type="email"],
 input[type="password"] {
-    height: 40px;
+  height: 40px;
 }
 
 button {
-    cursor: pointer;
-    transition: background 0.3s ease;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 button:hover {
-    background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 p {
-    color: white;
+  color: white;
 }
