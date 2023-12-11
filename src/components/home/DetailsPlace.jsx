@@ -42,6 +42,7 @@ function DetailsPlace() {
   };
 
   async function handleDelete(event) {
+    event.preventDefault();
     let result = await fetch(
       `${import.meta.env.VITE_API_URL}/destroy/${placeId}`,
       {
