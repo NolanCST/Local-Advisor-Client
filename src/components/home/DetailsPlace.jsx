@@ -10,6 +10,7 @@ function DetailsPlace() {
       try {
          const response = await fetch(`${import.meta.env.VITE_API_URL}/place/${place}`);
          const data = await response.json();
+         console.log(data);
          setPlace(data);
       } catch (e) {
          const $message = "Erreur dans la récupération du fetch";
@@ -22,7 +23,6 @@ function DetailsPlace() {
    }, []);
 
    const renderPlace = () => {
-      console.log(place);
       return place?.map((element, index) => {
          return (
             <div key={index}>
@@ -38,8 +38,7 @@ function DetailsPlace() {
    };
 
    const getRate = async (e) => {
-      e.prevenDefault();
-
+      e.preventDefault();
       let options = {
          method: "POST",
          headers: {
@@ -48,10 +47,11 @@ function DetailsPlace() {
          body: JSON.stringify({
             review: review,
             rate: rate,
-            place_id: place["id"],
+            place_id: place[0]["id"],
+            user_id: 1,
          }),
       };
-
+      console.log("debut");
       await fetch(`${import.meta.env.VITE_API_URL}/rates/create`, options)
          .then((response) => response.json())
          .then((data) => {
@@ -76,7 +76,7 @@ function DetailsPlace() {
          <div id="review">
             <div className="span1">
                <h2 className="titleComment">Donnez nous votre avis !</h2>
-               <form className="form-horizontal" id="ratingForm" method="POST" action="" name="ratingForm">
+               <form className="form-horizontal" id="ratingForm" onSubmit={getRate} name="ratingForm">
                   <label>Votre note</label>
                   <div className="rate">
                      <input type="radio" id="star5" name="rate" value="5" onChange={(e) => setRate(e.target.value)} />
@@ -105,9 +105,7 @@ function DetailsPlace() {
                      <textarea className="commentArea" name="review" onChange={(e) => setReview(e.target.value)} required></textarea>
                   </div>
                   <div className="form-group">
-                     <button className="btnComment" onClick={getRate}>
-                        Envoyer
-                     </button>
+                     <input type="submit" value="Envoyer" />
                   </div>
                </form>
             </div>
