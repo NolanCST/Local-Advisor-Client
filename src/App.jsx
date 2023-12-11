@@ -1,19 +1,24 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
-import Home from "./components/home/Home";
+import CreatePlaces from "./CreatePlaces";
 
 function App() {
-   const router = createBrowserRouter([
-      {
-         path: "/",
-         element: <Home />,
-      },
-   ]);
-   return (
-      <>
-         <RouterProvider router={router} />
-      </>
-   );
+  const router = createBrowserRouter([
+    //  {
+    //    path: "/",
+    //    element: <Home />,
+    //  },
+
+    {
+      path: "/create",
+      element: <CreatePlaces />,
+    },
+  ]);
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;

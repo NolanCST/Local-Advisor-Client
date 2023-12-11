@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./CreatePlaces.css";
 
 function CreatePlaces() {
   const [formData, setFormData] = useState({
@@ -10,29 +11,29 @@ function CreatePlaces() {
     description: "",
     image: null,
   });
-
+  9;
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleFile = (e) => {
     const file = e.target.files[0];
-    setPlaceData({ ...placeData, image: file });
+    setFormData({ ...formData, image: file });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("name", PlaceData.name);
-    formData.append("adress", PlaceData.adress);
-    formData.append("city", PlaceData.city);
-    formData.append("zip_code", PlaceData.zip_code);
-    formData.append("categories", PlaceData.categories);
-    formData.append("description", PlaceData.description);
-    formData.append("image", PlaceData.image);
+    formData.append("name", formData.name);
+    formData.append("adress", formData.adress);
+    formData.append("city", formData.city);
+    formData.append("zip_code", formData.zip_code);
+    formData.append("categories", formData.categories);
+    formData.append("description", formData.description);
+    formData.append("image", formData.image);
 
     try {
-      const response = await fetch("http://LAPILARAVELSUPER", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/create`, {
         method: "POST",
         body: formData,
       });
@@ -51,7 +52,7 @@ function CreatePlaces() {
   return (
     <div className="CreatePlacesContainer">
       <div className="wrapper">
-        <form enctype="multipart/form-data" onSubmit={handleSubmit}>
+        <form encType="multipart/form-data" onSubmit={handleSubmit}>
           <label htmlFor="name">Titre de l'activité:</label>
           <input type="text" name="name" onChange={handleChange} />
           <label htmlFor="adress">Adresse:</label>
