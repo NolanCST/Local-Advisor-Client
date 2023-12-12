@@ -40,8 +40,8 @@ function Register() {
             .then((response) => response.json()) // Récupère la réponse au format JSON
             .then((data) => {
                 if (data.success) {
-                    navigate("/Login");
-                    window.location.href("../login/Login.jsx");
+                    navigate("/login");
+                    //window.location.href("../login/Login.jsx");
                 } else {
                     alert(data.message);
                 }
