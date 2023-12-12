@@ -71,7 +71,6 @@ function Login() {
                     }),
                 }
             );
-
             if (response.ok) {
                 setMessage("Email envoyé avec succès");
             } else {
