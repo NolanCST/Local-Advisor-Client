@@ -41,6 +41,7 @@ function Register() {
             .then((data) => {
                 if (data.success) {
                     navigate("/Login");
+                    window.location.href("../login/Login.jsx");
                 } else {
                     alert(data.message);
                 }
