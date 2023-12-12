@@ -32,7 +32,7 @@ function DetailsPlace() {
    }, []);
 
    const handleDelete = async () => {
-      let result = await fetch(`${import.meta.env.VITE_API_URL}/destroy/${placeId}`, {
+      const result = await fetch(`${import.meta.env.VITE_API_URL}/destroy/${placeId}`, {
          method: "DELETE",
       });
       result = await result.json();
@@ -63,7 +63,7 @@ function DetailsPlace() {
          body: JSON.stringify({
             review: review,
             rate: rate,
-            place_id: place[0]["id"],
+            place_id: place.id,
             user_id: 1,
          }),
       };
@@ -80,19 +80,32 @@ function DetailsPlace() {
 
    const renderRates = () => {
       return ratings?.map((element, index) => {
+         const rateId = element.id;
          const stars = [];
 
          for (let i = 0; i < element.rate; i++) {
             stars.push(<span key={i}>⭐</span>);
          }
-
          return (
             <div key={index}>
                {stars}
                <p>{element.review}</p>
+               <button onClick={() => deleteRate(rateId)}>Supprimer</button>
             </div>
          );
       });
+   };
+
+   const deleteRate = async (rateId) => {
+      try {
+         const result = await fetch(`${import.meta.env.VITE_API_URL}/rates/${rateId}`, {
+            method: "DELETE",
+         });
+         const data = await result.json();
+         console.warn(data);
+      } catch (error) {
+         console.error("Erreur dans la suppression de l'avis", error);
+      }
    };
 
    return (
