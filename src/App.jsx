@@ -4,6 +4,7 @@ import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import Home from "./components/home/Home";
 import DetailsPlace from "./components/home/DetailsPlace";
+import CreatePlaces from "./components/home/CreatePlaces";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,6 +23,10 @@ function App() {
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/create",
+      element: <CreatePlaces />,
     },
   ]);
   return (

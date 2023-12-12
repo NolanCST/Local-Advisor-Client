@@ -4,17 +4,18 @@ import "./CreatePlaces.css";
 function CreatePlaces() {
   const [formData, setFormData] = useState({
     name: "",
-    adress: "",
+    address: "",
     city: "",
     zip_code: "",
     categories: "",
     description: "",
     image: null,
   });
-  9;
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   const handleFile = (e) => {
     const file = e.target.files[0];
     setFormData({ ...formData, image: file });
@@ -23,26 +24,30 @@ function CreatePlaces() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("name", formData.name);
-    formData.append("adress", formData.adress);
-    formData.append("city", formData.city);
-    formData.append("zip_code", formData.zip_code);
-    formData.append("categories", formData.categories);
-    formData.append("description", formData.description);
-    formData.append("image", formData.image);
+    const formDataToSend = new FormData();
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("address", formData.address);
+    formDataToSend.append("city", formData.city);
+    formDataToSend.append("zip_code", formData.zip_code);
+    formDataToSend.append("description", formData.description);
+    formDataToSend.append("user_id", 1);
+    // formDataToSend.append("image", formData.image);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/create`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/places`, {
         method: "POST",
-        body: formData,
+        body: formDataToSend,
       });
 
+      const responseData = await response.json();
+
       if (response.ok) {
-        const data = await response.json();
-        console.log("Création réussie:", data);
+        console.log("Création réussie:", responseData);
       } else {
-        console.error("Erreur lors de la création:", response.statusText);
+        console.error(
+          "Erreur lors de la création:",
+          responseData || response.statusText
+        );
       }
     } catch (error) {
       console.error("Erreur lors de la création:", error);
@@ -55,15 +60,20 @@ function CreatePlaces() {
         <form encType="multipart/form-data" onSubmit={handleSubmit}>
           <label htmlFor="name">Titre de l'activité:</label>
           <input type="text" name="name" onChange={handleChange} />
-          <label htmlFor="adress">Adresse:</label>
-          <input type="text" name="adress" onChange={handleChange} />
+          <label htmlFor="address">Adresse:</label>
+          <input type="text" name="address" onChange={handleChange} />
           <label htmlFor="city">Ville:</label>
           <input type="text" name="city" onChange={handleChange} />
           <label htmlFor="zip_code">Code Postal:</label>
           <input type="number" name="zip_code" onChange={handleChange} />
-          <input type="select" name="categories" onChange={handleChange} />
+          <label htmlFor="categories">Catégories:</label>
+          <select name="categories" onChange={handleChange}>
+            <option value="category1">Category 1</option>
+            <option value="category2">Category 2</option>
+            {/* Ajoutez plus d'options au besoin */}
+          </select>
           <label htmlFor="description">Description:</label>
-          <input type="textarea" name="description" onChange={handleChange} />
+          <textarea name="description" onChange={handleChange}></textarea>
           <label htmlFor="image">Sélectionner une image:</label>
           <input type="file" name="image" onChange={handleFile} />
           <button type="submit">Enregistrer</button>
@@ -72,4 +82,5 @@ function CreatePlaces() {
     </div>
   );
 }
+
 export default CreatePlaces;
