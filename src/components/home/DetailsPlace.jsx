@@ -67,7 +67,7 @@ function DetailsPlace() {
             user_id: 1,
          }),
       };
-      await fetch(`${import.meta.env.VITE_API_URL}/rates/create`, options)
+      await fetch(`${import.meta.env.VITE_API_URL}/rates`, options)
          .then((response) => response.json())
          .then((data) => {
             if (data.success) {
