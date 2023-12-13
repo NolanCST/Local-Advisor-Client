@@ -8,6 +8,7 @@ function CreatePlaces() {
       city: "",
       zip_code: "",
       description: "",
+      categories: [],
       image: null,
    });
    const [categories, setCategories] = useState([]);
@@ -23,7 +24,8 @@ function CreatePlaces() {
    };
 
    const handleCategoryChange = (e) => {
-      const selectedCategory = e.target.value;
+      const selectedCategory = parseInt(e.target.value);
+      console.log(selectedCategory);
       if (!selectedCategories.includes(selectedCategory)) {
          setSelectedCategories([...selectedCategories, selectedCategory]);
       }
@@ -50,7 +52,6 @@ function CreatePlaces() {
    }, []);
 
    const renderCategories = () => {
-      console.log(categories);
       return categories?.map((element, index) => {
          return (
             <option key={index} value={element.id}>
@@ -62,18 +63,18 @@ function CreatePlaces() {
 
    const handleSubmit = async (e) => {
       e.preventDefault();
-
+      console.log(selectedCategories);
       const formDataToSend = new FormData();
       formDataToSend.append("name", formData.name);
       formDataToSend.append("address", formData.address);
       formDataToSend.append("city", formData.city);
       formDataToSend.append("zip_code", formData.zip_code);
       formDataToSend.append("description", formData.description);
-      formDataToSend.append("user_id", 1);
       formDataToSend.append("categories", JSON.stringify(selectedCategories));
+      formDataToSend.append("user_id", 1);
       // formDataToSend.append("image", formData.image);
-
       try {
+         console.log(formDataToSend);
          const response = await fetch(`${import.meta.env.VITE_API_URL}/places`, {
             method: "POST",
             body: formDataToSend,
