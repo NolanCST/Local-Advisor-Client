@@ -6,47 +6,50 @@ function Profile() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
-    const [age, setAge] = useState("");
+    const [birthday, setAge] = useState("");
     const [pseudo, setPseudo] = useState("");
     const [edit, setEdit] = useState(false);
 
     async function getDataProfile() {
-        const options = {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: "bearer " + localStorage.getItem("token"),
-            },
-        };
-
         try {
-            const response = await fetch(
-                `${import.meta.env.VITE_API_URL}/users`,
-                options
-            );
-            if (response.ok) {
-                const data = await response.json();
-                setFirstName(data.firstname);
-                setLastName(data.lastname);
-                setEmail(data.email);
-                setAge(data.age);
-                setPseudo(data.pseudo);
-                console.log(data);
+            const token = localStorage.getItem("token"); // Récupération du token depuis le localStorage
+
+            if (token) {
+                const response = await fetch(
+                    `${import.meta.env.VITE_API_URL}/user`,
+                    {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: "Bearer " + token,
+                        },
+                    }
+                );
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log("Data from API:", data);
+                    setFirstName(data.firstname);
+                    setLastName(data.lastname);
+                    setEmail(data.email);
+                    setAge(data.birthday);
+                    setPseudo(data.pseudo);
+                } else {
+                    console.error("Failed to get user data");
+                }
             } else {
-                console.error("Failed to get user data");
+                console.error(
+                    "Le token n'est pas présent dans le localStorage"
+                );
             }
         } catch (error) {
             console.error("Error:", error);
         }
     }
 
-    useEffect(() => {
-        getDataProfile();
-    }, []);
-
     async function updateDataProfile() {
         const options = {
-            method: "PUT",
+            method: "PUT", // Utilisation de la méthode PUT
             headers: {
                 "Content-Type": "application/json",
                 Authorization: "bearer " + localStorage.getItem("token"),
@@ -55,14 +58,14 @@ function Profile() {
                 firstname: firstName,
                 lastname: lastName,
                 email: email,
-                age: age,
+                age: birthday,
                 pseudo: pseudo,
             }),
         };
 
         try {
             const response = await fetch(
-                `${import.meta.env.VITE_API_URL}/users`,
+                `${import.meta.env.VITE_API_URL}/user/profile/update`,
                 options
             );
             if (response.ok) {
@@ -89,7 +92,7 @@ function Profile() {
             setFirstName(user.firstName);
             setLastName(user.lastName);
             setEmail(user.email);
-            setAge(user.age);
+            setAge(user.birthday);
             setPseudo(user.pseudo);
         } else {
             getDataProfile();
@@ -113,8 +116,8 @@ function Profile() {
                                 <div className="renderInfo">{firstName}</div>
                             </div>
                             <div className="profileLine2">
-                                <label>Âge:</label>
-                                <div className="renderInfo">{age}</div>
+                                <label>Date de Naissance:</label>
+                                <div className="renderInfo">{birthday}</div>
                             </div>
                             <div className="profileLine2">
                                 <label>Pseudo:</label>
@@ -155,7 +158,7 @@ function Profile() {
                             <label>Âge:</label>
                             <input
                                 type="text"
-                                value={age}
+                                value={birthday}
                                 onChange={(e) => setAge(e.target.value)}
                                 className="formEdit"
                             />
