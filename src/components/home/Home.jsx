@@ -31,13 +31,13 @@ function Home() {
                      <div className="placeElement">
                         <p className="placeNameElement">{element.name}</p>
                         <p className="placeCityElement">{element.city}</p>
-                        <div className="categoriesContainer">
+                        {/* <div className="categoriesContainer">
                            {element.categories.map((element, index) => (
                               <p className="placeCategoriesElement" key={index}>
                                  #{element.name}
                               </p>
                            ))}
-                        </div>
+                        </div> */}
                      </div>
                   </div>
                </Link>
