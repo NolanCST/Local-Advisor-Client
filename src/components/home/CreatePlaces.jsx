@@ -12,7 +12,8 @@ function CreatePlaces() {
       image: null,
    });
    const [categories, setCategories] = useState([]);
-   const [selectedCategories, setSelectedCategories] = useState([]);
+   const [selectedCategoriesId, setSelectedCategoriesId] = useState([]);
+   const [selectedCategoriesName, setSelectedCategoriesName] = useState([]);
 
    const handleChange = (e) => {
       setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,16 +26,19 @@ function CreatePlaces() {
 
    const handleCategoryChange = (e) => {
       const selectedCategory = parseInt(e.target.value);
-      console.log(selectedCategory);
-      if (!selectedCategories.includes(selectedCategory)) {
-         setSelectedCategories([...selectedCategories, selectedCategory]);
+      if (!selectedCategoriesId.includes(selectedCategory)) {
+         setSelectedCategoriesId([...selectedCategoriesId, selectedCategory]);
+         const selectedCategoryName = categories.find((category) => category.id === selectedCategory)?.name;
+         setSelectedCategoriesName([...selectedCategoriesName, selectedCategoryName]);
       }
-      console.log(selectedCategories);
+      console.log(selectedCategoriesId);
    };
 
    const handleRemoveCategory = (categoryToRemove) => {
-      const updatedCategories = selectedCategories.filter((category) => category !== categoryToRemove);
-      setSelectedCategories(updatedCategories);
+      const updatedCategories = selectedCategoriesId.filter((category) => category !== categoryToRemove);
+      const updatedCategoriesName = selectedCategoriesName.filter((category) => category !== categoryToRemove);
+      setSelectedCategoriesId(updatedCategories);
+      setSelectedCategoriesName(updatedCategoriesName);
    };
 
    const recupCategories = async () => {
@@ -63,14 +67,14 @@ function CreatePlaces() {
 
    const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log(selectedCategories);
+      console.log(selectedCategoriesId);
       const formDataToSend = new FormData();
       formDataToSend.append("name", formData.name);
       formDataToSend.append("address", formData.address);
       formDataToSend.append("city", formData.city);
       formDataToSend.append("zip_code", formData.zip_code);
       formDataToSend.append("description", formData.description);
-      formDataToSend.append("categories", JSON.stringify(selectedCategories));
+      formDataToSend.append("categories", JSON.stringify(selectedCategoriesId));
       formDataToSend.append("user_id", 1);
       // formDataToSend.append("image", formData.image);
       try {
@@ -111,7 +115,7 @@ function CreatePlaces() {
                <div>
                   <p>Catégories sélectionnées:</p>
                   <ul>
-                     {selectedCategories.map((category) => (
+                     {selectedCategoriesName.map((category) => (
                         <li key={category}>
                            {category}
                            <button onClick={() => handleRemoveCategory(category)}>Retirer</button>
