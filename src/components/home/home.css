@@ -1,0 +1,87 @@
+.placeTitle {
+   text-align: center;
+}
+
+.placeTitle {
+   font-size: xx-large;
+}
+
+.renderHomeContainer {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin: 0 5% 0 5%;
+}
+
+.renderHomeContainer2 {
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+
+.filter1 {
+   width: 100%;
+   height: 15vh;
+   border: 1px solid gray;
+}
+
+.filter2 {
+   width: 15vw;
+   height: 70vh;
+   border: 1px solid gray;
+}
+
+.renderPlacesContainer {
+   display: flex;
+   flex-direction: column;
+   align-items: end;
+}
+
+.placeContainer {
+   width: 70vw;
+   height: 20vh;
+   padding: 5px;
+   margin: 3% 0 3% 0;
+   box-shadow: 0px 0px 5px var(--clr-2);
+   display: flex;
+   flex-direction: row;
+   gap: 10%;
+}
+
+.placeElement {
+   display: flex;
+   flex-direction: column;
+   width: 40vw;
+}
+
+.placeImageElement {
+   width: 20vw;
+   height: 20vh;
+   border: 1px solid gray;
+}
+
+.placeNameElement {
+   font-size: x-large;
+}
+
+.placeCityElement,
+.placeCategoriesElement {
+   font-size: large;
+}
+
+.placeNameElement,
+.placeCityElement,
+.placeCategoriesElement {
+   color: black;
+   margin-top: 2%;
+}
+
+.placeCategoriesElement {
+   margin-right: 3%;
+}
+
+.categoriesContainer {
+   display: flex;
+   flex-direction: row;
+}

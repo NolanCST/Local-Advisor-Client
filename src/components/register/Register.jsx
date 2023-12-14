@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // hook pour rediriger vers une page
+
 import "./Register.css";
 
 function Register() {
@@ -10,6 +12,8 @@ function Register() {
     const [birthday, setBirthday] = useState("");
     const [status, setStatus] = useState("");
     const [message, setMessage] = useState("");
+
+    const navigate = useNavigate();
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -37,6 +41,7 @@ function Register() {
             .then((data) => {
                 if (data.success) {
                     navigate("/login");
+                    //window.location.href("../login/Login.jsx");
                 } else {
                     alert(data.message);
                 }
@@ -104,7 +109,9 @@ function Register() {
                         <option value="0">Membre</option>
                         <option value="1">Gérant</option>
                     </select>
-                    <button onClick={handleRegister}>Register</button>
+                    <button className="RegisterButton" onClick={handleRegister}>
+                        S'inscrire
+                    </button>
                     {message && <p>{message}</p>}
                 </form>
             </div>
