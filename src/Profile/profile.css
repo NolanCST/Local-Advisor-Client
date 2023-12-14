@@ -1,4 +1,4 @@
-.LoginContainer {
+.wrapper {
     background: rgba(255, 255, 255, 0.15);
     border-radius: 10px;
     backdrop-filter: blur(10px);
@@ -11,14 +11,11 @@
     box-sizing: border-box;
     margin-top: 15%;
     margin-left: 40%;
-    background-color: var(--clr-3);
 }
 
-.loginEmail,
-.loginPassword,
-.loginButton,
-.buttonRegister,
-.buttonOublier {
+.renderInfo,
+.formEdit,
+.editButton {
     width: calc(100% - 20px);
     padding: 10px;
     border: none;
@@ -35,12 +32,11 @@
     transition: background 0.3s ease;
 }
 
-.loginEmail::placeholder,
-.loginPassword::placeholder {
+.formEdit::placeholder {
     color: rgba(255, 255, 255, 0.6);
 }
 
-button:hover {
+.editButton:hover {
     background: var(--clr-3);
 }
 
@@ -50,14 +46,14 @@ p {
 
 /* Media query pour les appareils de petite taille */
 @media screen and (max-width: 768px) {
-    .LoginContainer {
+    .wrapper {
         width: 80%;
     }
 }
 
 /* Media query pour les appareils de très petite taille */
 @media screen and (max-width: 480px) {
-    .LoginContainer {
+    .wrapper {
         width: 90%;
     }
 }

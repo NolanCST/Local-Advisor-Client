@@ -1,51 +1,72 @@
 .RegisterContainer {
-   background: rgba(255, 255, 255, 0.15);
-   border-radius: 10px;
-   backdrop-filter: blur(10px);
-   padding: 20px;
-   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-   display: flex;
-   flex-direction: column;
-   gap: 10px;
-   align-items: center;
-   background-color: var(--clr-3);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacement entre les éléments */
+    align-items: center;
+    max-width: 300px;
+    width: 100%;
+    box-sizing: border-box; /* largeur maximale comprend padding et bordure */
+    margin-top: 15%; /* Centrer horizontalement */
+    margin-left: 40%;
+    background-color: var(--clr-3);
 }
 
-input,
-select,
-button {
-   width: 100%;
-   padding: 10px;
-   border: none;
-   border-radius: 5px;
-   background: rgba(255, 255, 255, 0.25);
-   backdrop-filter: blur(5px);
-   color: white;
-   font-size: 16px;
-   outline: none;
+.RegisterLastname,
+.RegisterFirstname,
+.RegisterEmail,
+.RegisterPassword,
+.RegisterPseudo,
+.RegisterBirthday,
+.RegisterStatus,
+.RegisterButton {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(5px);
+    color: white;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 2%;
+    align-items: center;
+    box-sizing: border-box; /* largeur maximale comprend padding et bordure */
 }
 
-input::placeholder,
-select::placeholder {
-   color: rgba(255, 255, 255, 0.6);
+.RegisterEmail::placeholder,
+.RegisterPassword::placeholder {
+    color: white;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-select {
-   height: 40px;
+.RegisterBirthday {
+    height: 40px; /* hauteur */
 }
 
-button {
-   cursor: pointer;
-   transition: background 0.3s ease;
-}
-
-button:hover {
-   background: rgba(255, 255, 255, 0.3);
+.RegisterStatus,
+.RegisterStatus:hover {
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
 p {
    color: white;
+}
+
+/* Media query pour les appareils de petite taille */
+@media screen and (max-width: 768px) {
+    .RegisterContainer {
+        width: 80%;
+    }
+}
+
+/* Media query pour les appareils de très petite taille */
+@media screen and (max-width: 480px) {
+    .RegisterContainer {
+        width: 90%;
+    }
 }
