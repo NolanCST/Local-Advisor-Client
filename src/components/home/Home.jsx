@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./home.css";
+import Footer from "../footer/footer";
 
 function Home() {
    const [places, setPlaces] = useState([]);
@@ -59,7 +60,7 @@ function Home() {
                </div>
             </div>
          </section>
-         <footer>{/* emplacement footer */}</footer>
+        <Footer/>
       </div>
    );
 }
