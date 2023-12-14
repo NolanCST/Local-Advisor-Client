@@ -75,7 +75,8 @@ function Login() {
                 setMessage("Email envoyé avec succès");
             } else {
                 const text = await response.text();
-                setMessage(text); // Affiche le message d'erreur brut s'il n'est pas au format JSON
+                // setMessage("Erreur lors de l'envoi de l'email");
+                setMessage(text); // Affiche l'erreur s'il n'est pas format JSON
             }
         } catch (error) {
             console.error(

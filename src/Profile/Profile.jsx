@@ -56,7 +56,7 @@ function Profile() {
             method: "PUT", // Utilisation de la méthode PUT
             headers: {
                 "Content-Type": "application/json",
-                Authorization: "bearer " + localStorage.getItem("token"),
+                Authorization: "Bearer " + localStorage.getItem("token"),
             },
             body: JSON.stringify({
                 firstname: firstName,
