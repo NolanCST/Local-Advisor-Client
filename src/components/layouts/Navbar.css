@@ -1,0 +1,45 @@
+.navTag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--clr-4);
+  padding: 5px 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbarlist {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbarlist li {
+  padding: 0 20px;
+  position: space-between;
+}
+
+.navbarlist li a {
+  text-decoration: none;
+}
+
+.link {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #212121;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.logoSmall {
+  width: 90px;
+  height: 90px;
+}
