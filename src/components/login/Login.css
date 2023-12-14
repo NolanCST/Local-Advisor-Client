@@ -11,6 +11,7 @@
     box-sizing: border-box;
     margin-top: 15%;
     margin-left: 40%;
+    background-color: var(--clr-3);
 }
 
 .loginEmail,
