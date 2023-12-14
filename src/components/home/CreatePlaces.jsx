@@ -98,20 +98,18 @@ function CreatePlaces() {
       }
    };
 
-   return (
-      <div className="CreatePlacesContainer">
-         <div className="wrapper">
-            <form encType="multipart/form-data" onSubmit={handleSubmit}>
-               <label htmlFor="name">Titre de l'activité:</label>
-               <input type="text" name="name" onChange={handleChange} />
-               <label htmlFor="address">Adresse:</label>
-               <input type="text" name="address" onChange={handleChange} />
-               <label htmlFor="city">Ville:</label>
-               <input type="text" name="city" onChange={handleChange} />
-               <label htmlFor="zip_code">Code Postal:</label>
-               <input type="number" name="zip_code" onChange={handleChange} />
-               <label htmlFor="categories">Catégories:</label>
-               <select name="categories" onChange={handleCategoryChange} multiple>
+  return (
+        <form encType="multipart/form-data" className="place-form" onSubmit={handleSubmit}>
+          <label htmlFor="name">Titre de l'activité:</label>
+          <input className="form-input" type="text" name="name" onChange={handleChange} />
+          <label htmlFor="address">Adresse:</label>
+          <input className="form-input" type="text" name="address" onChange={handleChange} />
+          <label htmlFor="city">Ville:</label>
+          <input className="form-input"type="text" name="city" onChange={handleChange} />
+          <label htmlFor="zip_code">Code Postal:</label>
+          <input className="form-input" type="number" name="zip_code" onChange={handleChange} />
+          <label htmlFor="categories">Catégories:</label>
+          <select className="form-input" name="categories" onChange={handleCategoryChange} multiple>
                   {renderCategories()}
                </select>
 
@@ -126,16 +124,15 @@ function CreatePlaces() {
                      ))}
                   </ul>
                </div>
-
-               <label htmlFor="description">Description:</label>
-               <textarea name="description" onChange={handleChange}></textarea>
-               <label htmlFor="image">Sélectionner une image:</label>
-               <input type="file" name="image" onChange={handleFile} />
-               <button type="submit">Enregistrer</button>
-            </form>
-         </div>
-      </div>
-   );
+          <label htmlFor="description">Description:</label>
+          <textarea name="description" className="size-textarea" onChange={handleChange}></textarea>
+          <label htmlFor="image">Sélectionner une image:</label>
+          <input className="form-input" type="file" name="image" onChange={handleFile} />
+         <div className="btn-center">
+          <button type="submit" className="submit-btn">Enregistrer</button>
+       </div>
+        </form>
+  );
 }
 
 export default CreatePlaces;

@@ -32,13 +32,17 @@ function DetailsPlace() {
    }, []);
 
    const handleDelete = async () => {
-      const result = await fetch(`${import.meta.env.VITE_API_URL}/destroy/${placeId}`, {
+     try {
+
+     const result = await fetch(`${import.meta.env.VITE_API_URL}/places/${place.id}`, {
          method: "DELETE",
       });
-      result = await result.json();
-      console.warn(result);
-      window.location.href = "/";
-   };
+      const data = await result.json();
+      console.warn(data);
+    } catch (error) {
+      console.error("Erreur dans la suppression de l'avis", error);
+   }
+};
 
    const renderPlace = () => {
       return (

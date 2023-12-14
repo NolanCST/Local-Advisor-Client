@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./home.css";
+import Footer from "../footer/footer";
 
 function Home() {
    const [places, setPlaces] = useState([]);
@@ -22,17 +23,26 @@ function Home() {
 
    const renderPlaces = () => {
       return places?.map((element, index) => {
+         console.log(element.categories);
          return (
-            <div key={index}>
-               <Link to={`/DetailsPlace/${element.id}`} state={element.id}>
-                  <p>{element.name}</p>
-                  <p>{element.address}</p>
-                  <p>{element.zip_code}</p>
-                  <p>{element.city}</p>
-                  <p>{element.description}</p>
-                  {/* <p>{element.image}</p> */}
+            <>
+               <Link to={`/DetailsPlace/${element.id}`} state={element.id} style={{ textDecoration: "none" }}>
+                  <div className="placeContainer" key={index}>
+                     <img className="placeImageElement" />
+                     <div className="placeElement">
+                        <p className="placeNameElement">{element.name}</p>
+                        <p className="placeCityElement">{element.city}</p>
+                        {/* <div className="categoriesContainer">
+                           {element.categories.map((element, index) => (
+                              <p className="placeCategoriesElement" key={index}>
+                                 #{element.name}
+                              </p>
+                           ))}
+                        </div> */}
+                     </div>
+                  </div>
                </Link>
-            </div>
+            </>
          );
       });
    };
@@ -41,10 +51,16 @@ function Home() {
       <div className="homeContainer">
          <div>{/* Emplacement navbar */}</div>
          <section>
-            <h1>LocalAdvisor</h1>
-            <div>{renderPlaces()}</div>
+            <h1 className="placeTitle">LocalAdvisor</h1>
+            <div className="renderHomeContainer">
+               <div className="filter1"></div>
+               <div className="renderHomeContainer2">
+                  <div className="filter2"></div>
+                  <div className="renderPlacesContainer">{renderPlaces()}</div>
+               </div>
+            </div>
          </section>
-         <footer>{/* emplacement footer */}</footer>
+        <Footer/>
       </div>
    );
 }

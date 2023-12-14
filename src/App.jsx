@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import Home from "./components/home/Home";
+import Logout from "./components/logout/Logout";
+import Profile from "./Profile/profile";
 import DetailsPlace from "./components/home/DetailsPlace";
 import CreatePlaces from "./components/home/CreatePlaces";
 
@@ -27,6 +29,14 @@ function App() {
     {
       path: "/create",
       element: <CreatePlaces />,
+    },
+    {
+      path: "/logout",
+      element: <Logout />,
+    },
+    {
+      path: "/profile",
+      element: <Profile />,
     },
   ]);
   return (
