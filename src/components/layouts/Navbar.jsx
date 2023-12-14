@@ -23,7 +23,7 @@ function Navbar() {
             </li>
             <li>
               <a className="link" href="/profile">
-                Mon Profile
+                Profil
               </a>
             </li>
             <li>
