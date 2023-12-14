@@ -57,17 +57,17 @@ function CreatePlaces() {
   return (
     <div className="CreatePlacesContainer">
       <div className="wrapper">
-        <form encType="multipart/form-data" onSubmit={handleSubmit}>
+        <form encType="multipart/form-data" className="place-form" onSubmit={handleSubmit}>
           <label htmlFor="name">Titre de l'activité:</label>
-          <input type="text" name="name" onChange={handleChange} />
+          <input className="form-input" type="text" name="name" onChange={handleChange} />
           <label htmlFor="address">Adresse:</label>
-          <input type="text" name="address" onChange={handleChange} />
+          <input className="form-input" type="text" name="address" onChange={handleChange} />
           <label htmlFor="city">Ville:</label>
-          <input type="text" name="city" onChange={handleChange} />
+          <input className="form-input"type="text" name="city" onChange={handleChange} />
           <label htmlFor="zip_code">Code Postal:</label>
-          <input type="number" name="zip_code" onChange={handleChange} />
+          <input className="form-input" type="number" name="zip_code" onChange={handleChange} />
           <label htmlFor="categories">Catégories:</label>
-          <select name="categories" onChange={handleChange}>
+          <select className="form-input" name="categories" onChange={handleChange}>
             <option value="category1">Category 1</option>
             <option value="category2">Category 2</option>
             {/* Ajoutez plus d'options au besoin */}
@@ -75,8 +75,8 @@ function CreatePlaces() {
           <label htmlFor="description">Description:</label>
           <textarea name="description" onChange={handleChange}></textarea>
           <label htmlFor="image">Sélectionner une image:</label>
-          <input type="file" name="image" onChange={handleFile} />
-          <button type="submit">Enregistrer</button>
+          <input className="form-input" type="file" name="image" onChange={handleFile} />
+          <button type="submit" className="submit-btn">Enregistrer</button>
         </form>
       </div>
     </div>
