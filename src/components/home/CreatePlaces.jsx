@@ -55,8 +55,6 @@ function CreatePlaces() {
   };
 
   return (
-    <div className="CreatePlacesContainer">
-      <div className="wrapper">
         <form encType="multipart/form-data" className="place-form" onSubmit={handleSubmit}>
           <label htmlFor="name">Titre de l'activité:</label>
           <input className="form-input" type="text" name="name" onChange={handleChange} />
@@ -73,13 +71,13 @@ function CreatePlaces() {
             {/* Ajoutez plus d'options au besoin */}
           </select>
           <label htmlFor="description">Description:</label>
-          <textarea name="description" onChange={handleChange}></textarea>
+          <textarea name="description" className="size-textarea" onChange={handleChange}></textarea>
           <label htmlFor="image">Sélectionner une image:</label>
           <input className="form-input" type="file" name="image" onChange={handleFile} />
+         <div className="btn-center">
           <button type="submit" className="submit-btn">Enregistrer</button>
+       </div>
         </form>
-      </div>
-    </div>
   );
 }
 
