@@ -47,6 +47,10 @@ function Profile() {
         }
     }
 
+    useEffect(() => {
+        getDataProfile();
+    }, []);
+
     async function updateDataProfile() {
         const options = {
             method: "PUT", // Utilisation de la méthode PUT
@@ -58,7 +62,7 @@ function Profile() {
                 firstname: firstName,
                 lastname: lastName,
                 email: email,
-                age: birthday,
+                birthday: birthday,
                 pseudo: pseudo,
             }),
         };
