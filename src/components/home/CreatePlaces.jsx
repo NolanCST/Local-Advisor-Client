@@ -74,7 +74,10 @@ function CreatePlaces() {
       formDataToSend.append("city", formData.city);
       formDataToSend.append("zip_code", formData.zip_code);
       formDataToSend.append("description", formData.description);
-      formDataToSend.append("categories", JSON.stringify(selectedCategoriesId));
+      for (var i = 0; i < selectedCategoriesId.length; i++) {
+         formDataToSend.append("categories[]", selectedCategoriesId[i]);
+      }
+      // formDataToSend.append("categories", selectedCategoriesId);
       formDataToSend.append("user_id", 1);
       // formDataToSend.append("image", formData.image);
       try {
