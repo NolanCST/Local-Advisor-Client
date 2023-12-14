@@ -114,7 +114,7 @@ function CreatePlaces() {
                </select>
 
                <div>
-                  <p>Catégories sélectionnées:</p>
+                  <label>Catégories sélectionnées:</label>
                   <ul>
                      {selectedCategoriesName.map((category) => (
                         <li key={category}>

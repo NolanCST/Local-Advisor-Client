@@ -86,62 +86,71 @@ function Login() {
     };
 
     return (
-        <div className="LoginContainer">
-            <div>
+        
+        <div className="login-form">  
+        <h1 className="title">Connexion:</h1>      
+            <label className="log-form" htmlFor="email">Adresse mail:</label><br/>
                 <input
-                    className="loginEmail"
+                name="email"
+                    className="input-formL"
                     type="email"
                     placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                />
-            </div>
-            <div>
+                /><br/>
+            <label className="log-form"  htmlFor="">Mot de passe:</label><br/>
                 <input
-                    className="loginPassword"
+                    className="input-formL"
                     type="password"
                     placeholder="Mot de Passe"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-            </div>
             <div>
-                <button className="loginButton" onClick={handleLogin}>
+                <button className="btn-co" onClick={handleLogin}>
                     Se connecter
                 </button>
             </div>
-            <div>
-                <button className="buttonRegister" onClick={gotoRegister}>
+            {/* <div>
+                <button className="btn-save" onClick={gotoRegister}>
                     Créer un Compte
                 </button>
-            </div>
-            <div>
+            </div> */}
+               <div className="insc">
+                <p >Vous n'avez pas de compte ?
+            <a href="/register"> Cliquez ici</a></p>
+          </div>
+            {/* <div>
                 <button
-                    className="buttonOublier"
+                    className="btn-forget"
                     onClick={() => setShowForgotEmail(true)}
                 >
                     Mot de passe oublié ?
                 </button>
-            </div>
+            </div> */}
+            <div className="insc">
+            <a href="/forgotPassword"> Mot de passe oublié ? </a>
+          </div>
             {showForgotEmail && (
-                <div>
-                    <input
-                        className="forgotEmail"
-                        type="email"
-                        placeholder="Entrez votre adresse email"
-                        value={forgotEmail}
-                        onChange={(e) => setForgotEmail(e.target.value)}
-                    />
-                    <button className="buttonEnvoyer" onClick={handleOublier}>
-                        Envoyer
-                    </button>
-                    <button
-                        className="buttonAnnuler"
-                        onClick={() => setShowForgotEmail(false)}
-                    >
-                        Annuler
-                    </button>
-                </div>
+                // <div>
+                //     <input
+                //         className="forgotEmail"
+                //         type="email"
+                //         placeholder="Entrez votre adresse email"
+                //         value={forgotEmail}
+                //         onChange={(e) => setForgotEmail(e.target.value)}
+                //     />
+                //     <button className="buttonEnvoyer" onClick={handleOublier}>
+                //         Envoyer
+                //     </button>
+                //     <button
+                //         className="buttonAnnuler"
+                //         onClick={() => setShowForgotEmail(false)}
+                //     >
+                //         Annuler
+                //     </button>
+                // </div>
+                <forgotPassword/>
             )}
             {message && <p>{message}</p>}
         </div>

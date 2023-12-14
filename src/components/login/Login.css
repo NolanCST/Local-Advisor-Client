@@ -1,63 +1,85 @@
-.LoginContainer {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
+.login-form {
+      
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #f9f9f9;
     padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    gap: 20px;
-    align-items: center;
-    max-width: 300px;
-    width: 100%;
-    box-sizing: border-box;
-    margin-top: 15%;
-    margin-left: 40%;
-    background-color: var(--clr-3);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 130px;
+    
+}
+.title{
+    margin-bottom: 6%;
+
 }
 
-.loginEmail,
-.loginPassword,
-.loginButton,
-.buttonRegister,
-.buttonOublier {
-    width: calc(100% - 20px);
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(5px);
-    color: white;
-    font-size: 16px;
-    outline: none;
-    margin-bottom: 2%;
-    align-items: center;
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
 
-.loginEmail::placeholder,
-.loginPassword::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-button:hover {
-    background: var(--clr-3);
+.log-form {
+    font-weight: bold;
+    display: block;
 }
 
 p {
-    color: white;
+    color: black!important;
 }
+
+.input-formL {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: rgb(0, 0, 0);
+}
+
+.btn-co,
+.btn-save,
+.btn-forget
+ {
+    background-color: rgb(173, 32, 32);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 300px;
+    
+}
+
+.btn-co:hover,
+.btn-save:hover,
+.btn-forget:hover {
+    background-color: #e9b31f;
+}
+
+
+/* .loginEmail::placeholder,
+.loginPassword::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+} */
+
+/* button:hover {
+    background: var(--clr-3);
+} */
+
+/* p {
+    color: white;
+} */
 
 /* Media query pour les appareils de petite taille */
 @media screen and (max-width: 768px) {
-    .LoginContainer {
+    .login-form {
         width: 80%;
     }
 }
 
 /* Media query pour les appareils de très petite taille */
 @media screen and (max-width: 480px) {
-    .LoginContainer {
+    .login-form {
         width: 90%;
     }
 }
