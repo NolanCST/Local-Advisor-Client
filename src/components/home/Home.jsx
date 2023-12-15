@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./home.css";
+import Footer from "../footer/footer";
+import Navbar from "../layouts/NavBar";
 
 function Home() {
    const [places, setPlaces] = useState([]);
@@ -31,13 +33,13 @@ function Home() {
                      <div className="placeElement">
                         <p className="placeNameElement">{element.name}</p>
                         <p className="placeCityElement">{element.city}</p>
-                        {/* <div className="categoriesContainer">
+                        <div className="categoriesContainer">
                            {element.categories.map((element, index) => (
                               <p className="placeCategoriesElement" key={index}>
                                  #{element.name}
                               </p>
                            ))}
-                        </div> */}
+                        </div>
                      </div>
                   </div>
                </Link>
@@ -48,7 +50,9 @@ function Home() {
 
    return (
       <div className="homeContainer">
-         <div>{/* Emplacement navbar */}</div>
+         <nav>
+            <Navbar />
+         </nav>
          <section>
             <h1 className="placeTitle">LocalAdvisor</h1>
             <div className="renderHomeContainer">
@@ -59,7 +63,9 @@ function Home() {
                </div>
             </div>
          </section>
-         <footer>{/* emplacement footer */}</footer>
+         <footer>
+            <Footer />
+         </footer>
       </div>
    );
 }
