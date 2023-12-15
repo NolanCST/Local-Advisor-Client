@@ -31,16 +31,28 @@ function CreatePlaces() {
          const selectedCategoryName = categories.find((category) => category.id === selectedCategory)?.name;
          setSelectedCategoriesName([...selectedCategoriesName, selectedCategoryName]);
       }
-      console.log(selectedCategoriesId);
    };
 
    const handleRemoveCategory = (categoryToRemove) => {
-      const updatedCategories = selectedCategoriesId.filter((category) => category !== categoryToRemove);
-      const updatedCategoriesName = selectedCategoriesName.filter((category) => category !== categoryToRemove);
-      setSelectedCategoriesId(updatedCategories);
-      setSelectedCategoriesName(updatedCategoriesName);
-   };
+      // Trouver l'index de la catégorie à supprimer dans selectedCategoriesId
+      const indexToRemove = selectedCategoriesName.indexOf(categoryToRemove);
 
+      if (indexToRemove !== -1) {
+         // Créer une copie des états actuels
+         const updatedCategoriesId = [...selectedCategoriesId];
+         const updatedCategoriesName = [...selectedCategoriesName];
+
+         // Supprimer l'élément à l'index trouvé dans selectedCategoriesId
+         updatedCategoriesId.splice(indexToRemove, 1);
+
+         // Supprimer l'élément à l'index trouvé dans selectedCategoriesName
+         updatedCategoriesName.splice(indexToRemove, 1);
+
+         // Mettre à jour les états
+         setSelectedCategoriesId(updatedCategoriesId);
+         setSelectedCategoriesName(updatedCategoriesName);
+      }
+   };
    const recupCategories = async () => {
       try {
          const response = await fetch(`${import.meta.env.VITE_API_URL}/places/create`);
@@ -67,7 +79,6 @@ function CreatePlaces() {
 
    const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log(selectedCategoriesId);
       const formDataToSend = new FormData();
       formDataToSend.append("name", formData.name);
       formDataToSend.append("address", formData.address);
@@ -81,7 +92,6 @@ function CreatePlaces() {
       formDataToSend.append("user_id", 1);
       // formDataToSend.append("image", formData.image);
       try {
-         console.log(formDataToSend);
          const response = await fetch(`${import.meta.env.VITE_API_URL}/places`, {
             method: "POST",
             body: formDataToSend,
@@ -98,41 +108,43 @@ function CreatePlaces() {
       }
    };
 
-  return (
-        <form encType="multipart/form-data" className="place-form" onSubmit={handleSubmit}>
-          <label htmlFor="name">Titre de l'activité:</label>
-          <input className="form-input" type="text" name="name" onChange={handleChange} />
-          <label htmlFor="address">Adresse:</label>
-          <input className="form-input" type="text" name="address" onChange={handleChange} />
-          <label htmlFor="city">Ville:</label>
-          <input className="form-input"type="text" name="city" onChange={handleChange} />
-          <label htmlFor="zip_code">Code Postal:</label>
-          <input className="form-input" type="number" name="zip_code" onChange={handleChange} />
-          <label htmlFor="categories">Catégories:</label>
-          <select className="form-input" name="categories" onChange={handleCategoryChange} multiple>
-                  {renderCategories()}
-               </select>
+   return (
+      <form encType="multipart/form-data" className="place-form" onSubmit={handleSubmit}>
+         <label htmlFor="name">Titre de l'activité:</label>
+         <input className="form-input" type="text" name="name" onChange={handleChange} />
+         <label htmlFor="address">Adresse:</label>
+         <input className="form-input" type="text" name="address" onChange={handleChange} />
+         <label htmlFor="city">Ville:</label>
+         <input className="form-input" type="text" name="city" onChange={handleChange} />
+         <label htmlFor="zip_code">Code Postal:</label>
+         <input className="form-input" type="number" name="zip_code" onChange={handleChange} />
+         <label htmlFor="categories">Catégories:</label>
+         <select className="form-input" name="categories" onChange={handleCategoryChange} multiple>
+            {renderCategories()}
+         </select>
 
-               <div>
-                  <p>Catégories sélectionnées:</p>
-                  <ul>
-                     {selectedCategoriesName.map((category) => (
-                        <li key={category}>
-                           {category}
-                           <button onClick={() => handleRemoveCategory(category)}>Retirer</button>
-                        </li>
-                     ))}
-                  </ul>
-               </div>
-          <label htmlFor="description">Description:</label>
-          <textarea name="description" className="size-textarea" onChange={handleChange}></textarea>
-          <label htmlFor="image">Sélectionner une image:</label>
-          <input className="form-input" type="file" name="image" onChange={handleFile} />
+         <div>
+            <label>Catégories sélectionnées:</label>
+            <ul>
+               {selectedCategoriesName.map((category, index) => (
+                  <li key={index}>
+                     {category}
+                     <button onClick={() => handleRemoveCategory(category)}>Retirer</button>
+                  </li>
+               ))}
+            </ul>
+         </div>
+         <label htmlFor="description">Description:</label>
+         <textarea name="description" className="size-textarea" onChange={handleChange}></textarea>
+         <label htmlFor="image">Sélectionner une image:</label>
+         <input className="form-input" type="file" name="image" onChange={handleFile} />
          <div className="btn-center">
-          <button type="submit" className="submit-btn">Enregistrer</button>
-       </div>
-        </form>
-  );
+            <button type="submit" className="submit-btn">
+               Enregistrer
+            </button>
+         </div>
+      </form>
+   );
 }
 
 export default CreatePlaces;
