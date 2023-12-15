@@ -33,9 +33,16 @@ function Navbar() {
                            Déconnexion
                         </a>
                      ) : (
-                        <a className="link" href="/login">
-                           Connexion
-                        </a>
+                        <>
+                           <div>
+                              <a className="link" href="/login">
+                                 Connexion
+                              </a>
+                              <a className="link" href="/register">
+                                 Inscription
+                              </a>
+                           </div>
+                        </>
                      )}
                   </li>
                </ul>

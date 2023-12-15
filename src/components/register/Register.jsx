@@ -151,6 +151,11 @@ function Register() {
                   <button className="btn-reg" onClick={handleRegister}>
                      S'inscrire
                   </button>
+                  <div className="insc">
+                     <p>
+                        Vous avez déjà un compte ?<a href="/login"> Cliquez ici</a>
+                     </p>
+                  </div>
                   {message && <p>{message}</p>}
                </form>
             </div>

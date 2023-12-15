@@ -24,7 +24,6 @@ function Home() {
 
    const renderPlaces = () => {
       return places?.map((element, index) => {
-         console.log(element.categories);
          return (
             <>
                <Link to={`/DetailsPlace/${element.id}`} state={element.id} style={{ textDecoration: "none" }}>
