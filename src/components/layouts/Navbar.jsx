@@ -2,13 +2,18 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
+  const token = localStorage.getItem("token");
+  const isLoggedIn = !!token;
+
   return (
     <div>
       <nav className="navTag">
-        <img
-          className="logoSmall"
-          src="src\components\layouts\Corgi_guge-removebg-preview.png"
-        />
+        <a className="imageLink" href="/">
+          <img
+            className="logoSmall"
+            src="src\components\layouts\Corgi_guge-removebg-preview.png"
+          />
+        </a>
         <div class="navbar">
           <ul className="navbarlist">
             <li>
@@ -27,9 +32,15 @@ function Navbar() {
               </a>
             </li>
             <li>
-              <a className="link" href="/logout">
-                Se déconnecter
-              </a>
+              {isLoggedIn ? (
+                <a className="link" href="/logout">
+                  Déconnexion
+                </a>
+              ) : (
+                <a className="link" href="/login">
+                  Connexion
+                </a>
+              )}
             </li>
           </ul>
         </div>

@@ -1,16 +1,20 @@
 .navTag {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   background: var(--clr-4);
   padding: 5px 5px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+}
+
+.imageLink:hover {
+  cursor: pointer;
 }
 
 .navbar {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 5%;
 }
 
 .navbarlist {
@@ -22,7 +26,7 @@
 
 .navbarlist li {
   padding: 0 20px;
-  position: space-between;
+  position: space-around;
 }
 
 .navbarlist li a {
@@ -30,8 +34,8 @@
 }
 
 .link {
-  font-size: 1.3rem;
-  font-weight: 600;
+  font-size: 1.4rem;
+  font-weight: 800;
   color: #212121;
 }
 
