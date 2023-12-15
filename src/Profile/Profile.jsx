@@ -103,59 +103,47 @@ function Profile() {
             <Navbar />
          </nav>
          <section>
-            <div className="wrapper">
+            <div className="prform">
                {edit === false ? (
                   <>
-                     <div className="profileContainer">
-                        <h2>Mon Profil d'utilisateur</h2>
+                        <h2 className="title">Mon Profil d'utilisateur</h2>
                         {/* Render user information */}
-                        <div className="profileLine2">
+                        <div className="pform">
                            <label>Nom:</label>
-                           <div className="renderInfo">{lastName}</div>
-                        </div>
-                        <div className="profileLine2">
+                           <div className="input-formP">{lastName}</div>
                            <label>Prénom:</label>
-                           <div className="renderInfo">{firstName}</div>
-                        </div>
-                        <div className="profileLine2">
+                           <div className="input-formP">{firstName}</div>
                            <label>Date de Naissance:</label>
-                           <div className="renderInfo">{birthday}</div>
-                        </div>
-                        <div className="profileLine2">
+                           <div className="input-formP">{birthday}</div>
                            <label>Pseudo:</label>
-                           <div className="renderInfo">{pseudo}</div>
-                        </div>
-                        <div className="profileLine2">
+                           <div className="input-formP">{pseudo}</div>
                            <label>Email:</label>
-                           <div className="renderInfo">{email}</div>
-                        </div>
-                        <div className="buttonStyle">
-                           <button className="editButton" onClick={handleClickEdit}>
+                           <div className="input-formP">{email}</div>
+                           <button className="btn-edit" onClick={handleClickEdit}>
                               Modifier
                            </button>
                         </div>
-                     </div>
                   </>
                ) : (
-                  <>
-                     <div className="editProfileContainer">
-                        <h2>Modifier Mon Profil d'utilisateur</h2>
+                
+                  <>  <div className="pform">
+                        <h2 className="title">Modifier Mon Profil d'utilisateur</h2>
                         <label>Nom:</label>
-                        <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} className="formEdit" />
+                        <input className="input-formP" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)}  />
                         <label>Prénom:</label>
-                        <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="formEdit" />
-                        <label>Âge:</label>
-                        <input type="text" value={birthday} onChange={(e) => setAge(e.target.value)} className="formEdit" />
-                        <label>Pseudo:</label>
-                        <input type="text" value={pseudo} onChange={(e) => setPseudo(e.target.value)} className="formEdit" />
+                        <input className="input-formP" type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                        <label>Date de naissance:</label>
+                        <input className="input-formP" type="text" value={birthday} onChange={(e) => setAge(e.target.value)}  />
+                        <label> Pseudo:</label>
+                        <input className="input-formP" type="text" value={pseudo} onChange={(e) => setPseudo(e.target.value)}  />
                         <label>Email:</label>
-                        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} className="formEdit" />
-                        <div className="buttonStyle">
-                           <button className="editButton" onClick={handleClickEdit}>
+                        <input className="input-formP" type="text" value={email} onChange={(e) => setEmail(e.target.value)}  />
+                        <div >
+                           <button className="btn-edit" onClick={handleClickEdit}>
                               Valider
                            </button>
                         </div>
-                     </div>
+                        </div>
                   </>
                )}
             </div>
