@@ -74,7 +74,6 @@ function DetailsPlace() {
                                        <div key={index}>
                                           <h5>#{element.name}</h5>
                                        </div>
-                                       ;
                                     </>
                                  );
                               })}
