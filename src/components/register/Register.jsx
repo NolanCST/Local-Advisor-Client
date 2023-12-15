@@ -49,59 +49,67 @@ function Register() {
     };
 
     return (
-        <>
-            <div className="RegisterContainer">
+            <div className="register-form">
+                <h1 className="title">Inscription :</h1> 
                 <form action="" method="post">
+                <label className="reg-form" htmlFor="name"> Nom:</label><br/>
                     <input
-                        className="RegisterLastname"
+                     name="name"
+                        className="input-formR"
                         type="text"
-                        placeholder="Nom"
+                        // placeholder="Nom"
                         value={lastname}
                         onChange={(e) => setLastname(e.target.value)}
                         required
-                    />
+                    /><br/>
+                     <label className="reg-form" htmlFor="firstname">Prenom:</label><br/>
                     <input
-                        className="RegisterFirstname"
+                     name="firstname"
+                        className="input-formR"
                         type="text"
-                        placeholder="Prenom"
+                        // placeholder="Prenom"
                         value={firstname}
                         onChange={(e) => setFirstname(e.target.value)}
                         required
-                    />
+                    /><br/>
+                     <label className="reg-form" htmlFor="email">Adresse mail:</label><br/>
                     <input
-                        className="RegisterEmail"
+                        className="input-formR"
                         type="email"
-                        placeholder="Email"
+                        // placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                    />
+                    /> <br/><label className="reg-form" htmlFor="password">Mot de passe:</label><br/>
                     <input
-                        className="RegisterPassword"
+                    name="password"
+                        className="input-formR"
                         type="password"
-                        placeholder="Password"
+                        // placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                    />
+                    /> <br/><label className="reg-form" htmlFor="pseudo">Pseudo:</label><br/>
                     <input
-                        className="RegisterPseudo"
+                    name="pseudp"
+                        className="input-formR"
                         type="text"
-                        placeholder="Pseudo"
+                        // placeholder="Pseudo"
                         value={pseudo}
                         onChange={(e) => setPseudo(e.target.value)}
                         required
-                    />
+                    /> <br/><label className="reg-form" htmlFor="birthday">Date de naissance:</label><br/>
                     <input
-                        className="RegisterBirthday"
+                    name="birthday"
+                        className="input-formR"
                         type="date"
-                        placeholder="Date de Naissance"
+                        // placeholder="Date de Naissance"
                         value={birthday}
                         onChange={(e) => setBirthday(e.target.value)}
                         required
-                    />
+                    /><br/>
                     <select
-                        className="RegisterStatus"
+                        className="input-formR"
                         onChange={(e) => setStatus(e.target.value)}
                         required
                     >
@@ -109,13 +117,12 @@ function Register() {
                         <option value="0">Membre</option>
                         <option value="1">Gérant</option>
                     </select>
-                    <button className="RegisterButton" onClick={handleRegister}>
+                    <button className="btn-reg" onClick={handleRegister}>
                         S'inscrire
                     </button>
                     {message && <p>{message}</p>}
                 </form>
             </div>
-        </>
     );
 }
 
