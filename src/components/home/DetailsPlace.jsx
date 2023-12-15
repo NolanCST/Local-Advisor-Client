@@ -6,9 +6,9 @@ function DetailsPlace() {
    const placeId = useLocation().state;
    const [place, setPlace] = useState([]);
    const [ratings, setRatings] = useState([]);
-   const [avgRating, setAvgRating] = useState([]);
-   const [avgStarRating, setAvgStarRating] = useState([]);
-   const [ratingsCount, setRatingsCount] = useState([]);
+   const [avgRating, setAvgRating] = useState("");
+   const [avgStarRating, setAvgStarRating] = useState("");
+   const [ratingsCount, setRatingsCount] = useState("");
    const [review, setReview] = useState([]);
    const [rate, setRate] = useState([]);
 
@@ -32,28 +32,66 @@ function DetailsPlace() {
    }, []);
 
    const handleDelete = async () => {
-     try {
-
-     const result = await fetch(`${import.meta.env.VITE_API_URL}/places/${place.id}`, {
-         method: "DELETE",
-      });
-      const data = await result.json();
-      console.warn(data);
-    } catch (error) {
-      console.error("Erreur dans la suppression de l'avis", error);
-   }
-};
+      try {
+         const result = await fetch(`${import.meta.env.VITE_API_URL}/places/${place[0].id}`, {
+            method: "DELETE",
+         });
+         const data = await result.json();
+         console.warn(data);
+      } catch (error) {
+         console.error("Erreur dans la suppression de l'avis", error);
+      }
+   };
 
    const renderPlace = () => {
       return (
-         <div>
-            <p>Nom de l'établissement : {place.name}</p>
-            <p>Adresse : {place.address}</p>
-            <p>Code postal : {place.zip_code}</p>
-            <p>Ville: {place.city}</p>
-            <p>Description : {place.description}</p>
-            {/* <p>{place.image}</p> */}
-         </div>
+         <>
+            <div className="elementPlaceContainer">
+               {place.map((element, index) => {
+                  return (
+                     <>
+                        <div className="detailsPlaceLeftSection" key={index}>
+                           <img className="detailsPlaceImage" src="{element.image}" />;
+                           <div className="averageRate">
+                              Note générale: {avgRating} {renderStarRates()} ({ratingsCount})
+                           </div>
+                           <div className="detailsPlaceBtnModif">
+                              <button className="btnEdit" onClick={handleDelete}>
+                                 Supprimer
+                              </button>
+                           </div>
+                        </div>
+                        ;
+                        <div className="elementDetailsPlaceContainer">
+                           <h1 className="detailsPlaceTilte">{element.name}</h1>
+                           <p className="detailsPlaceDescription">{element.description}</p>
+                           <div className="categoriesDetailsPlace">
+                              {element.categories.map((element, index) => {
+                                 return (
+                                    <>
+                                       <div key={index}>
+                                          <h5>#{element.name}</h5>
+                                       </div>
+                                       ;
+                                    </>
+                                 );
+                              })}
+                           </div>
+                           <div className="precisionDetailsPlace">
+                              <div className="mapsDetailsPlace">Future maps</div>
+                              <div className="addressDetailsPlace">
+                                 <h4>{element.address}</h4>
+                                 <h4>{element.zip_code}</h4>
+                                 <h4>{element.city}</h4>
+                              </div>
+                           </div>
+                        </div>
+                        ;
+                     </>
+                  );
+               })}
+            </div>
+         </>
       );
    };
 
@@ -67,7 +105,7 @@ function DetailsPlace() {
          body: JSON.stringify({
             review: review,
             rate: rate,
-            place_id: place.id,
+            place_id: place[0].id,
             user_id: 1,
          }),
       };
@@ -91,13 +129,25 @@ function DetailsPlace() {
             stars.push(<span key={i}>⭐</span>);
          }
          return (
-            <div key={index}>
-               {stars}
+            <div className="renderRateDetailsPlace" key={index}>
+               <div className="renderStarRate">{stars}</div>
                <p>{element.review}</p>
-               <button onClick={() => deleteRate(rateId)}>Supprimer</button>
+               <button className="btnDeleteRate" onClick={() => deleteRate(rateId)}>
+                  🗑️
+               </button>
             </div>
          );
       });
+   };
+
+   const renderStarRates = () => {
+      let $stars = 0;
+      let $renderStars = "";
+      while ($stars < avgStarRating) {
+         $renderStars += "⭐";
+         $stars++;
+      }
+      return $renderStars;
    };
 
    const deleteRate = async (rateId) => {
@@ -117,9 +167,7 @@ function DetailsPlace() {
          <div className="detailsPlaceContainer">
             <div>{/* Emplacement navbar */}</div>
             <section>
-               <h1>Détails du lieu</h1>
-               <div>{renderPlace()}</div>
-               <button onClick={handleDelete}>Supprimer</button>
+               <div className="showContainer">{renderPlace()}</div>
             </section>
             <section>
                <div id="review">
@@ -154,7 +202,7 @@ function DetailsPlace() {
                            <textarea className="commentArea" name="review" onChange={(e) => setReview(e.target.value)} required></textarea>
                         </div>
                         <div className="form-group">
-                           <input type="submit" value="Envoyer" />
+                           <input className="btnComment" type="submit" value="Envoyer" />
                         </div>
                      </form>
                   </div>
