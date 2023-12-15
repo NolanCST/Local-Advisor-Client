@@ -10,7 +10,7 @@ function Navbar() {
             <a className="imageLink" href="/">
                <img className="logoSmall" src="src\components\layouts\Corgi_guge-removebg-preview.png" />
             </a>
-            <div class="navbar">
+            <div className="navbar">
                <ul className="navbarlist">
                   <li>
                      <a className="link" href="/">
