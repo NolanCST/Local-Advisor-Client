@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./detailsPlace.css";
 import { useLocation } from "react-router-dom";
+import Navbar from "../layouts/NavBar";
+import Footer from "../footer/footer";
 
 function DetailsPlace() {
    const placeId = useLocation().state;
@@ -164,8 +166,10 @@ function DetailsPlace() {
 
    return (
       <>
+         <nav>
+            <Navbar />
+         </nav>
          <div className="detailsPlaceContainer">
-            <div>{/* Emplacement navbar */}</div>
             <section>
                <div className="showContainer">{renderPlace()}</div>
             </section>
@@ -212,8 +216,10 @@ function DetailsPlace() {
                   </div>
                </div>
             </section>
-            <footer>{/* emplacement footer */}</footer>
          </div>
+         <footer>
+            <Footer />
+         </footer>
       </>
    );
 }
