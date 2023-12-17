@@ -13,6 +13,7 @@ function DetailsPlace() {
    const [ratingsCount, setRatingsCount] = useState("");
    const [review, setReview] = useState([]);
    const [rate, setRate] = useState([]);
+   const token = localStorage.getItem("token");
 
    const recupPlace = async () => {
       try {
@@ -98,27 +99,31 @@ function DetailsPlace() {
 
    const createRate = async (e) => {
       e.preventDefault();
-      let options = {
-         method: "POST",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify({
-            review: review,
-            rate: rate,
-            place_id: place[0].id,
-            user_id: 1,
-         }),
-      };
-      await fetch(`${import.meta.env.VITE_API_URL}/rates`, options)
-         .then((response) => response.json())
-         .then((data) => {
-            if (data.success) {
-               alert("Votre avis a bien ete pris en compte");
-            } else {
-               alert(data.message);
-            }
-         });
+      if (token) {
+         let options = {
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json",
+               Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            body: JSON.stringify({
+               review: review,
+               rate: rate,
+               place_id: place[0].id,
+            }),
+         };
+         await fetch(`${import.meta.env.VITE_API_URL}/rates`, options)
+            .then((response) => response.json())
+            .then((data) => {
+               if (data.success) {
+                  alert("Votre avis a bien ete pris en compte");
+               } else {
+                  alert(data.message);
+               }
+            });
+      } else {
+         console.log("Vous devez etre connecte en tant que membre pour mettre un commentaire");
+      }
    };
 
    const renderRates = () => {

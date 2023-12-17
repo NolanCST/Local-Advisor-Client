@@ -27,7 +27,6 @@ function Profile() {
 
             if (response.ok) {
                const data = await response.json();
-               console.log("Data from API:", data);
                setFirstName(data.firstname);
                setLastName(data.lastname);
                setEmail(data.email);
@@ -48,21 +47,21 @@ function Profile() {
       getDataProfile();
    }, []);
 
-    async function updateDataProfile() {
-        const options = {
-            method: "PUT", // Utilisation de la méthode PUT
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-            body: JSON.stringify({
-                firstname: firstName,
-                lastname: lastName,
-                email: email,
-                birthday: birthday,
-                pseudo: pseudo,
-            }),
-        };
+   async function updateDataProfile() {
+      const options = {
+         method: "PUT", // Utilisation de la méthode PUT
+         headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+         },
+         body: JSON.stringify({
+            firstname: firstName,
+            lastname: lastName,
+            email: email,
+            birthday: birthday,
+            pseudo: pseudo,
+         }),
+      };
 
       try {
          const response = await fetch(`${import.meta.env.VITE_API_URL}/user/profile/update`, options);
