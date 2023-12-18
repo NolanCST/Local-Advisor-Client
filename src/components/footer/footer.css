@@ -5,6 +5,8 @@
    width: 100%;
    background-color: var(--clr-4);
    padding-top: 10px;
+   margin-top: 50px;
+ 
 }
 
 /* Logo Styles /
@@ -36,6 +38,7 @@ u {
 nav.links a {
    color: rgb(0, 0, 0);
    text-decoration: none;
+   padding-right: 10px;
 }
 
 .links div {
@@ -45,7 +48,7 @@ nav.links a {
    text-align: center;
    padding-top: 3px;
    padding-top: 3px;
-   background-color: rgba(221, 221, 221, 0.993);
+   background-color: var(--clr-3);
 }
 .logo {
    width: 110px;
