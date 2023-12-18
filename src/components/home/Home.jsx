@@ -45,7 +45,7 @@ function Home() {
             <>
                <Link to={`/DetailsPlace/${element.id}`} state={element.id} style={{ textDecoration: "none" }}>
                   <div className="placeContainer" key={index}>
-                     <img className="placeImageElement" />
+                     <img className="placeImageElement" src={element.image} />
                      <div className="placeElement">
                         <p className="placeNameElement">{element.name}</p>
                         <p className="placeCityElement">{element.city}</p>
