@@ -10,6 +10,7 @@ function ResetPasswordPage() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [message, setMessage] = useState("");
     const [resetToken, setResetToken] = useState("");
+    const [resetEmail, setResetEmail] = useState("");
 
     useEffect(() => {
         fetch(`/reset-password/token/${token}`)
@@ -17,6 +18,7 @@ function ResetPasswordPage() {
             .then((data) => {
                 console.log("Token récupéré :", data.token);
                 setResetToken(data.token);
+                setResetEmail(data.email);
             })
             .catch((error) => {
                 console.error(
@@ -42,7 +44,7 @@ function ResetPasswordPage() {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        email,
+                        email: resetEmail,
                         token: resetToken,
                         newPassword,
                     }),
