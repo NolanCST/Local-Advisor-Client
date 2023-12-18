@@ -3,6 +3,7 @@ import "./detailsPlace.css";
 import { useLocation } from "react-router-dom";
 import Navbar from "../layouts/NavBar";
 import Footer from "../footer/footer";
+import Vote from "./vote";
 
 function DetailsPlace() {
    const placeId = useLocation().state;
@@ -63,6 +64,7 @@ function DetailsPlace() {
                                  Supprimer
                               </button>
                            </div>
+                           
                         </div>
                         ;
                         <div className="elementDetailsPlaceContainer">
@@ -126,6 +128,7 @@ function DetailsPlace() {
       }
    };
 
+   
    const renderRates = () => {
       return ratings?.map((element, index) => {
          const rateId = element.id;
@@ -141,7 +144,13 @@ function DetailsPlace() {
                <button className="btnDeleteRate" onClick={() => deleteRate(rateId)}>
                   🗑️
                </button>
+               {/* <div class="buttons">
+<button onClick={() => downvote(rateId)}>Downvote</button>
+<button onClick={() => upvote(rateId)}>Upvote</button>
+</div> */}
+<Vote/>
             </div>
+            
          );
       });
    };
