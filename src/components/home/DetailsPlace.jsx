@@ -143,12 +143,8 @@ function DetailsPlace() {
                <p>{element.review}</p>
                <button className="btnDeleteRate" onClick={() => deleteRate(rateId)}>
                   🗑️
-               </button>
-               {/* <div class="buttons">
-<button onClick={() => downvote(rateId)}>Downvote</button>
-<button onClick={() => upvote(rateId)}>Upvote</button>
-</div> */}
-<Vote/>
+               </button> 
+               <Vote/>
             </div>
             
          );

@@ -3,7 +3,8 @@
    grid-template-columns: repeat(3, 1fr);
    gap: 20px;
    width: 100%;
-   background-color: rgb(174, 172, 172);
+   background-color: var(--clr-4);
+   padding-top: 10px;
 }
 
 /* Logo Styles /
@@ -28,12 +29,12 @@
 
 div.infos a,
 u {
-   color: rgb(255, 255, 255);
+   color: rgb(0, 0, 0);
    text-decoration: none;
 }
 
 nav.links a {
-   color: white;
+   color: rgb(0, 0, 0);
    text-decoration: none;
 }
 
@@ -46,7 +47,10 @@ nav.links a {
    padding-top: 3px;
    background-color: rgba(221, 221, 221, 0.993);
 }
-
+.logo {
+   width: 110px;
+   
+ }
 @media (max-width: 500px) {
    .logo {
       display: none;
