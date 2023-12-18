@@ -11,7 +11,7 @@ function CreatePlaces() {
       zip_code: "",
       description: "",
       categories: [],
-      image: null,
+      image: {},
    });
    const [categories, setCategories] = useState([]);
    const [selectedCategoriesId, setSelectedCategoriesId] = useState([]);
@@ -87,6 +87,7 @@ function CreatePlaces() {
       formDataToSend.append("city", formData.city);
       formDataToSend.append("zip_code", formData.zip_code);
       formDataToSend.append("description", formData.description);
+      formDataToSend.append("image", formData.image);
       for (var i = 0; i < selectedCategoriesId.length; i++) {
          formDataToSend.append("categories[]", selectedCategoriesId[i]);
       }
