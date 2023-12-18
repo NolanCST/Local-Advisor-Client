@@ -13,6 +13,7 @@ function DetailsPlace() {
    const [ratingsCount, setRatingsCount] = useState("");
    const [review, setReview] = useState([]);
    const [rate, setRate] = useState([]);
+   const [imgRate, setImgRate] = useState({});
    const token = localStorage.getItem("token");
 
    const recupPlace = async () => {
@@ -100,43 +101,57 @@ function DetailsPlace() {
    const createRate = async (e) => {
       e.preventDefault();
       if (token) {
+         console.log(imgRate);
+         let formData = new FormData();
+         formData.append("image", imgRate); // Assurez-vous que imgRate est un objet de fichier
+         formData.append("review", review);
+         formData.append("rate", rate);
+         formData.append("place_id", place[0].id);
+
          let options = {
             method: "POST",
             headers: {
-               "Content-Type": "application/json",
                Authorization: "Bearer " + localStorage.getItem("token"),
             },
-            body: JSON.stringify({
-               review: review,
-               rate: rate,
-               place_id: place[0].id,
-            }),
+            body: formData,
          };
-         await fetch(`${import.meta.env.VITE_API_URL}/rates`, options)
-            .then((response) => response.json())
-            .then((data) => {
-               if (data.success) {
-                  alert("Votre avis a bien ete pris en compte");
-               } else {
-                  alert(data.message);
-               }
-            });
+
+         console.log(options);
+
+         try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/rates`, options);
+            const data = await response.json();
+
+            if (data.success) {
+               alert("Votre avis a bien été pris en compte");
+            } else {
+               alert(data.message);
+            }
+         } catch (error) {
+            console.error("Error:", error);
+         }
       } else {
-         console.log("Vous devez etre connecte en tant que membre pour mettre un commentaire");
+         console.log("Vous devez être connecté en tant que membre pour mettre un commentaire");
       }
    };
 
    const renderRates = () => {
+      console.log(ratings);
       return ratings?.map((element, index) => {
          const rateId = element.id;
          const stars = [];
+         let renderImgRate = "";
 
          for (let i = 0; i < element.rate; i++) {
             stars.push(<span key={i}>⭐</span>);
          }
+         if (element.image != null) {
+            renderImgRate = element.image;
+         }
          return (
             <div className="renderRateDetailsPlace" key={index}>
                <div className="renderStarRate">{stars}</div>
+               <img className="renderImgRate" src={renderImgRate} />
                <p>{element.review}</p>
                <button className="btnDeleteRate" onClick={() => deleteRate(rateId)}>
                   🗑️
@@ -181,7 +196,7 @@ function DetailsPlace() {
                <div id="review">
                   <div className="span1">
                      <h2 className="titleComment">Donnez nous votre avis !</h2>
-                     <form className="form-horizontal" id="ratingForm" onSubmit={createRate} name="ratingForm">
+                     <form className="form-horizontal" id="ratingForm" encType="multipart/form-data" onSubmit={createRate} name="ratingForm">
                         <label>Votre note</label>
                         <div className="rate">
                            <input type="radio" id="star5" name="rate" value="5" onChange={(e) => setRate(e.target.value)} />
@@ -207,7 +222,17 @@ function DetailsPlace() {
                         </div>
                         <div className="form-group">
                            <label>Votre commentaire</label>
-                           <textarea className="commentArea" name="review" onChange={(e) => setReview(e.target.value)} required></textarea>
+                           <textarea className="commentArea" name="review" onChange={(e) => setReview(e.target.value)}></textarea>
+                        </div>
+                        <div className="form-group">
+                           <input
+                              className="imgRate"
+                              type="file"
+                              name="imgRate"
+                              onChange={(e) => {
+                                 setImgRate(e.target.files[0]);
+                              }}
+                           />
                         </div>
                         <div className="form-group">
                            <input className="btnComment" type="submit" value="Envoyer" />
