@@ -2,6 +2,8 @@ import React from "react";
 import "./footer.css";
 
 function Footer() {
+  const token = localStorage.getItem("token");
+  const isLoggedIn = !!token;
   return (
     <>
       <div className="container">
@@ -27,7 +29,20 @@ function Footer() {
             <a href="/profile">Voir mon profil</a>
           </div>
           <div>
-            <a href="/logout">se déconnecter </a>
+            {isLoggedIn ? (
+                <a href="/logout">
+                  Déconnexion
+                </a>
+            ) : (
+              <>
+                  <a  href="/register">
+                    Inscription
+                  </a>
+                  <a href="/login">
+                    Connexion
+                  </a>
+              </>
+            )}
           </div>
         </nav>
       </div>
