@@ -9,13 +9,14 @@ function ResetPasswordPage() {
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [message, setMessage] = useState("");
+    const [resetToken, setResetToken] = useState("");
 
     useEffect(() => {
         fetch(`/reset-password/token/${token}`)
             .then((response) => response.json())
             .then((data) => {
                 console.log("Token récupéré :", data.token);
-                // Utiliser le token récupéré si nécessaire
+                setResetToken(data.token);
             })
             .catch((error) => {
                 console.error(
@@ -42,7 +43,7 @@ function ResetPasswordPage() {
                     },
                     body: JSON.stringify({
                         email,
-                        token,
+                        token: resetToken,
                         newPassword,
                     }),
                 }
@@ -92,12 +93,12 @@ function ResetPasswordPage() {
                         />
                     </div>
                     <button type="submit">Réinitialiser le mot de passe</button>
+                    {message && <p>{message}</p>}
                 </form>
             </div>
             <footer>
                 <Footer />
             </footer>
-            {message && <p>{message}</p>}
         </div>
     );
 }
