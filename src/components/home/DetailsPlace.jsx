@@ -56,7 +56,7 @@ function DetailsPlace() {
                   return (
                      <>
                         <div className="detailsPlaceLeftSection" key={index}>
-                           <img className="detailsPlaceImage" src="{element.image}" />;
+                           <img className="detailsPlaceImage" src={element.image} />;
                            <div className="averageRate">
                               Note générale: {avgRating} {renderStarRates()} ({ratingsCount})
                            </div>
@@ -65,7 +65,6 @@ function DetailsPlace() {
                                  Supprimer
                               </button>
                            </div>
-                           
                         </div>
                         ;
                         <div className="elementDetailsPlaceContainer">
@@ -103,7 +102,6 @@ function DetailsPlace() {
    const createRate = async (e) => {
       e.preventDefault();
       if (token) {
-         console.log(imgRate);
          let formData = new FormData();
          formData.append("image", imgRate); // Assurez-vous que imgRate est un objet de fichier
          formData.append("review", review);
@@ -117,8 +115,6 @@ function DetailsPlace() {
             },
             body: formData,
          };
-
-         console.log(options);
 
          try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/rates`, options);
@@ -137,9 +133,7 @@ function DetailsPlace() {
       }
    };
 
-   
    const renderRates = () => {
-      console.log(ratings);
       return ratings?.map((element, index) => {
          const rateId = element.id;
          const stars = [];
@@ -158,10 +152,9 @@ function DetailsPlace() {
                <p>{element.review}</p>
                <button className="btnDeleteRate" onClick={() => deleteRate(rateId)}>
                   🗑️
-               </button> 
-               <Vote/>
+               </button>
+               <Vote />
             </div>
-            
          );
       });
    };
