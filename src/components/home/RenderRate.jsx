@@ -12,6 +12,7 @@ function RenderRate(props) {
    const token = localStorage.getItem("token");
 
    const createRate = async (e) => {
+      const place = props.place;
       e.preventDefault();
       if (token) {
          let formData = new FormData();

@@ -114,7 +114,7 @@ function DetailsPlace() {
             <section>
                <div className="showContainer">{renderPlace()}</div>
             </section>
-            <RenderRate ratings={ratings} avgStarRating={avgStarRating} />
+            <RenderRate ratings={ratings} avgStarRating={avgStarRating} place={place} />
          </div>
          <footer>
             <Footer />
