@@ -48,6 +48,11 @@ function App() {
             path: "/resetPasswordPage",
             element: <ResetPasswordPage />,
         },
+        {
+            path: "/reset-password/:token",
+            exact: true,
+            component: ResetPasswordPage,
+        },
     ]);
     return (
         <>

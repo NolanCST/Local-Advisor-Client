@@ -13,10 +13,16 @@ function ResetPasswordPage() {
     const [resetEmail, setResetEmail] = useState("");
 
     useEffect(() => {
-        fetch(`/reset-password/token/${token}`)
-            .then((response) => response.json())
+        fetch(`${import.meta.env.VITE_API_URL}/reset-password/token`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Erreur réseau - " + response.statusText);
+                }
+                return response.json();
+            })
             .then((data) => {
                 console.log("Token récupéré :", data.token);
+                console.log("adresse email :", data.email);
                 setResetToken(data.token);
                 setResetEmail(data.email);
             })
@@ -34,7 +40,6 @@ function ResetPasswordPage() {
             setMessage("Les mots de passe ne correspondent pas.");
             return;
         }
-        const email = localStorage.getItem("resetPasswordEmail");
         try {
             const response = await fetch(
                 `${import.meta.env.VITE_API_URL}/reset-password`,
@@ -46,7 +51,7 @@ function ResetPasswordPage() {
                     body: JSON.stringify({
                         email: resetEmail,
                         token: resetToken,
-                        newPassword,
+                        password: newPassword,
                     }),
                 }
             );
