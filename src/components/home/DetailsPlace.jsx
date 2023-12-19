@@ -12,9 +12,12 @@ function DetailsPlace() {
    const [avgRating, setAvgRating] = useState("");
    const [avgStarRating, setAvgStarRating] = useState("");
    const [ratingsCount, setRatingsCount] = useState("");
-   const [review, setReview] = useState([]);
+   const [review, setReview] = useState("");
    const [rate, setRate] = useState([]);
+   const [newReview, setNewReview] = useState("");
+   const [newRate, setNewRate] = useState([]);
    const [imgRate, setImgRate] = useState({});
+   const [editMode, setEditMode] = useState(-1);
    const token = localStorage.getItem("token");
 
    const recupPlace = async () => {
@@ -103,7 +106,7 @@ function DetailsPlace() {
       e.preventDefault();
       if (token) {
          let formData = new FormData();
-         formData.append("image", imgRate); // Assurez-vous que imgRate est un objet de fichier
+         formData.append("image", imgRate);
          formData.append("review", review);
          formData.append("rate", rate);
          formData.append("place_id", place[0].id);
@@ -125,6 +128,7 @@ function DetailsPlace() {
             } else {
                alert(data.message);
             }
+            window.location.reload();
          } catch (error) {
             console.error("Error:", error);
          }
@@ -147,12 +151,39 @@ function DetailsPlace() {
          }
          return (
             <div className="renderRateDetailsPlace" key={index}>
-               <div className="renderStarRate">{stars}</div>
-               <img className="renderImgRate" src={renderImgRate} />
-               <p>{element.review}</p>
-               <button className="btnDeleteRate" onClick={() => deleteRate(rateId)}>
-                  🗑️
-               </button>
+               {editMode === rateId ? (
+                  // Formulaire d'édition
+                  <form encType="multipart/form-data" onSubmit={(e) => editRate(e, rateId)}>
+                     <p>Votre note</p>
+                     <input type="number" min="1" max="5" defaultValue={element.rate} onChange={(e) => setNewRate(e.target.value)} required />
+                     <p>Votre commentaire</p>
+                     <textarea defaultValue={element.review} onChange={(e) => setNewReview(e.target.value)}></textarea>
+                     {/* <input
+                        type="file"
+                        name="imgRate"
+                        onChange={(e) => {
+                           setImgRate(e.target.files[0]);
+                        }}
+                     /> */}
+                     <button type="submit">Enregistrer</button>
+                  </form>
+               ) : (
+                  // Contenu de l'avis
+                  <div>
+                     <div className="renderStarRate">{stars}</div>
+                     <img className="renderImgRate" src={renderImgRate} />
+                     <p>{element.review}</p>
+                  </div>
+               )}
+               <div>
+                  <button className="btnEditRate" onClick={() => enterEditMode(rateId)}>
+                     ✏️
+                  </button>
+                  <button className="btnDeleteRate" onClick={() => deleteRate(rateId)}>
+                     🗑️
+                  </button>
+               </div>
+
                <Vote />
             </div>
          );
@@ -167,6 +198,38 @@ function DetailsPlace() {
          $stars++;
       }
       return $renderStars;
+   };
+
+   const enterEditMode = (rateId) => {
+      setEditMode(rateId);
+   };
+
+   const editRate = async (e, rateId) => {
+      e.preventDefault();
+
+      let options = {
+         method: "PUT",
+         headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+         },
+         body: JSON.stringify({
+            review: newReview,
+            rate: newRate,
+         }),
+      };
+      console.log(options);
+      try {
+         const response = await fetch(`${import.meta.env.VITE_API_URL}/rates/${rateId}`, options);
+         const data = await response.json();
+         if (data.success) {
+            console.log("Votre avis a bien été modifié");
+         }
+         window.location.reload();
+      } catch (error) {
+         console.error(error);
+      }
+      setEditMode(-1);
    };
 
    const deleteRate = async (rateId) => {

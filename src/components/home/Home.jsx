@@ -41,6 +41,10 @@ function Home() {
          return cityFilter && categoryFilter && searchFilter;
       });
       return filteredPlaces?.map((element, index) => {
+         const stars = [];
+         for (let i = 1; i <= element.average_rating; i++) {
+            stars.push(<span key={i}>⭐</span>);
+         }
          return (
             <>
                <Link to={`/DetailsPlace/${element.id}`} state={element.id} style={{ textDecoration: "none" }}>
@@ -55,6 +59,10 @@ function Home() {
                                  #{element.name}
                               </p>
                            ))}
+                        </div>
+                        <div className="avgRateContainer">
+                           {element.average_rating}
+                           {stars}({element.total_rates})
                         </div>
                      </div>
                   </div>

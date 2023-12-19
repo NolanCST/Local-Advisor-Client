@@ -103,7 +103,8 @@
    margin-bottom: 3%;
 }
 
-.btnDeleteRate {
+.btnDeleteRate,
+.btnEditRate {
    background: none;
    border: none;
 }
