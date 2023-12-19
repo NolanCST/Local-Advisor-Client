@@ -214,10 +214,14 @@ span2 {
 }
 
 .renderRateDetailsPlace {
+   width: 20vw;
    display: flex;
    flex-direction: column;
    gap: 10px;
    margin-bottom: 20px;
+   background-color: var(--clr-5);
+   padding: 5%;
+   border: 1px solid gray;
 }
 
 .renderStarRate {
