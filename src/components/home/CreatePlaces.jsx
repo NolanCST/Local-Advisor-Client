@@ -123,10 +123,10 @@ function CreatePlaces() {
                <label htmlFor="name">Titre de l'activité:</label>
                <input className="form-input" type="text" name="name" onChange={handleChange} />
                <label htmlFor="address">Adresse:</label>
-               <input className="form-input" type="text" name="address" onChange={handleChange} />
-               <label htmlFor="city">Ville:</label>
                <input className="form-input" type="text" name="city" onChange={handleChange} />
                <label htmlFor="zip_code">Code Postal:</label>
+               <input className="form-input" type="text" name="address" onChange={handleChange} />
+               <label htmlFor="city">Ville:</label>
                <input className="form-input" type="number" name="zip_code" onChange={handleChange} />
                <label htmlFor="categories">Catégories:</label>
                <select className="form-input" name="categories" onChange={handleCategoryChange} multiple>
