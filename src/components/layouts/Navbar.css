@@ -1,129 +1,127 @@
 .navTag {
-  display: flex;
-  align-items: center;
-  background: var(--clr-4);
-  padding: 5px 5px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+   display: flex;
+   align-items: center;
+   background: var(--clr-4);
+   padding: 5px 5px;
+   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .imageLink:hover {
-  cursor: pointer;
+   cursor: pointer;
 }
 
 .navbar {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 3% 0 5%;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin: 0 3% 0 5%;
 }
 
 .navbarListLeft {
-  width: 50%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+   width: 50%;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
 }
 
 .navbarListLeft,
 .navbarListRight {
-  list-style: none;
-  display: flex;
+   list-style: none;
+   display: flex;
 }
 
 .navbarListLeft li,
 .navbarListRight li {
-  margin-right: 40px;
+   margin-right: 40px;
 }
 
 .navbarListLeft li a,
 .navbarListRight li a {
-  text-decoration: none;
+   text-decoration: none;
 }
 
 .link {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #212121;
+   font-size: 1.4rem;
+   font-weight: 800;
+   color: #212121;
 }
 
 .link:hover {
-  text-decoration: underline;
+   text-decoration: underline;
 }
 
 .logoSmall {
-  width: 90px;
-  height: 90px;
+   width: 90px;
+   height: 90px;
 }
 
 .hamburgerMenu {
-  display: none; 
-  flex-direction: column;
-  justify-content: space-around;
-  height: 24px;
-  width: 30px;
-  cursor: pointer;
-  position: relative;
-  z-index: 10;
+   display: none;
+   flex-direction: column;
+   justify-content: space-around;
+   height: 24px;
+   width: 30px;
+   cursor: pointer;
+   position: relative;
+   z-index: 10;
 }
 
 .line {
-  width: 100%;
-  height: 3px;
-  background-color: #212121;
-  transition: all 0.3s;
+   width: 100%;
+   height: 3px;
+   background-color: #212121;
+   transition: all 0.3s;
 }
 
 .open .line1 {
-  transform: rotate(-45deg) translate(-5px, 6px);
+   transform: rotate(-45deg) translate(-5px, 6px);
 }
 
 .open .line2 {
-  opacity: 0;
+   opacity: 0;
 }
 
 .open .line3 {
-  transform: rotate(45deg) translate(-5px, -6px);
+   transform: rotate(45deg) translate(-5px, -6px);
 }
 
 @media (max-width: 768px) {
-  .hamburgerMenu {
-    display: flex;
-  }
+   .hamburgerMenu {
+      display: flex;
+   }
 
-  .navTag {
-    display: none; 
-  }
+   .navTag {
+      display: none;
+   }
 
-  .navTag.open {
-    display: block;
-  }
-  .navbarListRight,
-  .navbarListLeft{
-  flex-direction: column;
-  }
-  .navbarListLeft,
-  .navbarListRight {
-    width: 100%; 
-    padding: 0; 
-    margin: 0;
-  }
+   .navTag.open {
+      display: block;
+   }
+   .navbarListRight,
+   .navbarListLeft {
+      flex-direction: column;
+   }
+   .navbarListLeft,
+   .navbarListRight {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+   }
 
-  .navbarListRight {
-    flex-direction: column; 
-  }
+   .navbarListRight {
+      flex-direction: column;
+   }
 
-  .navbar {
-    flex-direction: column; 
-    text-align:center;
-  }
+   .navbar {
+      flex-direction: column;
+      text-align: center;
+   }
 
-  html {
-    width: 100%;
-  }
-  .sidebar {
-    display: flex;
-  }
-
+   html {
+      width: 100%;
+   }
+   .sidebar {
+      display: flex;
+   }
 }
-
