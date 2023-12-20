@@ -122,3 +122,15 @@
    align-items: center;
    gap: 5%;
 }
+
+.renderRateDetailsPlace {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   margin-bottom: 20px;
+}
+
+.renderStarRate {
+   display: flex;
+   flex-direction: row;
+}

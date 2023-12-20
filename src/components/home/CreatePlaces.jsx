@@ -94,7 +94,6 @@ function CreatePlaces() {
          formDataToSend.append("categories[]", selectedCategoriesId[i]);
       }
       formDataToSend.append("user_id", 1);
-      // formDataToSend.append("image", formData.image);
       try {
          const response = await fetch(`${import.meta.env.VITE_API_URL}/places`, {
             method: "POST",
