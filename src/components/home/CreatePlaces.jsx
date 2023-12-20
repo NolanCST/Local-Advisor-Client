@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./CreatePlaces.css";
 import Footer from "../footer/footer";
 import Navbar from "../layouts/NavBar";
+import { useNavigate } from "react-router-dom";
 
 function CreatePlaces() {
    const [formData, setFormData] = useState({
@@ -16,6 +17,7 @@ function CreatePlaces() {
    const [categories, setCategories] = useState([]);
    const [selectedCategoriesId, setSelectedCategoriesId] = useState([]);
    const [selectedCategoriesName, setSelectedCategoriesName] = useState([]);
+   const navigate = useNavigate();
 
    const handleChange = (e) => {
       setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -91,7 +93,6 @@ function CreatePlaces() {
       for (var i = 0; i < selectedCategoriesId.length; i++) {
          formDataToSend.append("categories[]", selectedCategoriesId[i]);
       }
-      // formDataToSend.append("categories", selectedCategoriesId);
       formDataToSend.append("user_id", 1);
       // formDataToSend.append("image", formData.image);
       try {
@@ -103,6 +104,7 @@ function CreatePlaces() {
          const responseData = await response.json();
          if (response.ok) {
             console.log("Création réussie:", responseData);
+            navigate("/");
          } else {
             console.error("Erreur lors de la création:", responseData || response.statusText);
          }
