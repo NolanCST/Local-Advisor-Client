@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import "./CreatePlaces.css";
+import Footer from "../footer/footer";
+import Navbar from "../layouts/NavBar";
+import { useNavigate } from "react-router-dom";
 
 function CreatePlaces() {
    const [formData, setFormData] = useState({
@@ -9,11 +12,12 @@ function CreatePlaces() {
       zip_code: "",
       description: "",
       categories: [],
-      image: null,
+      image: {},
    });
    const [categories, setCategories] = useState([]);
    const [selectedCategoriesId, setSelectedCategoriesId] = useState([]);
    const [selectedCategoriesName, setSelectedCategoriesName] = useState([]);
+   const navigate = useNavigate();
 
    const handleChange = (e) => {
       setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -85,12 +89,11 @@ function CreatePlaces() {
       formDataToSend.append("city", formData.city);
       formDataToSend.append("zip_code", formData.zip_code);
       formDataToSend.append("description", formData.description);
+      formDataToSend.append("image", formData.image);
       for (var i = 0; i < selectedCategoriesId.length; i++) {
          formDataToSend.append("categories[]", selectedCategoriesId[i]);
       }
-      // formDataToSend.append("categories", selectedCategoriesId);
       formDataToSend.append("user_id", 1);
-      // formDataToSend.append("image", formData.image);
       try {
          const response = await fetch(`${import.meta.env.VITE_API_URL}/places`, {
             method: "POST",
@@ -100,6 +103,7 @@ function CreatePlaces() {
          const responseData = await response.json();
          if (response.ok) {
             console.log("Création réussie:", responseData);
+            navigate("/");
          } else {
             console.error("Erreur lors de la création:", responseData || response.statusText);
          }
@@ -109,41 +113,51 @@ function CreatePlaces() {
    };
 
    return (
-      <form encType="multipart/form-data" className="place-form" onSubmit={handleSubmit}>
-         <label htmlFor="name">Titre de l'activité:</label>
-         <input className="form-input" type="text" name="name" onChange={handleChange} />
-         <label htmlFor="address">Adresse:</label>
-         <input className="form-input" type="text" name="address" onChange={handleChange} />
-         <label htmlFor="city">Ville:</label>
-         <input className="form-input" type="text" name="city" onChange={handleChange} />
-         <label htmlFor="zip_code">Code Postal:</label>
-         <input className="form-input" type="number" name="zip_code" onChange={handleChange} />
-         <label htmlFor="categories">Catégories:</label>
-         <select className="form-input" name="categories" onChange={handleCategoryChange} multiple>
-            {renderCategories()}
-         </select>
+      <>
+         <nav>
+            <Navbar />
+         </nav>
+         <section>
+            <form encType="multipart/form-data" className="place-form" onSubmit={handleSubmit}>
+               <label htmlFor="name">Titre de l'activité:</label>
+               <input className="form-input" type="text" name="name" onChange={handleChange} />
+               <label htmlFor="address">Adresse:</label>
+               <input className="form-input" type="text" name="address" onChange={handleChange} />
+               <label htmlFor="zip_code">Code Postal:</label>
+               <input className="form-input" type="number" name="zip_code" onChange={handleChange} />
+               <label htmlFor="city">Ville:</label>
+               <input className="form-input" type="text" name="city" onChange={handleChange} />
+               <label htmlFor="categories">Catégories:</label>
+               <select className="form-input" name="categories" onChange={handleCategoryChange} multiple>
+                  {renderCategories()}
+               </select>
 
-         <div>
-            <label>Catégories sélectionnées:</label>
-            <ul>
-               {selectedCategoriesName.map((category, index) => (
-                  <li key={index}>
-                     {category}
-                     <button onClick={() => handleRemoveCategory(category)}>Retirer</button>
-                  </li>
-               ))}
-            </ul>
-         </div>
-         <label htmlFor="description">Description:</label>
-         <textarea name="description" className="size-textarea" onChange={handleChange}></textarea>
-         <label htmlFor="image">Sélectionner une image:</label>
-         <input className="form-input" type="file" name="image" onChange={handleFile} />
-         <div className="btn-center">
-            <button type="submit" className="submit-btn">
-               Enregistrer
-            </button>
-         </div>
-      </form>
+               <div>
+                  <label>Catégories sélectionnées:</label>
+                  <ul>
+                     {selectedCategoriesName.map((category, index) => (
+                        <li key={index}>
+                           {category}
+                           <button onClick={() => handleRemoveCategory(category)}>Retirer</button>
+                        </li>
+                     ))}
+                  </ul>
+               </div>
+               <label htmlFor="description">Description:</label>
+               <textarea name="description" className="size-textarea" onChange={handleChange}></textarea>
+               <label htmlFor="image">Sélectionner une image:</label>
+               <input className="form-input" type="file" name="image" onChange={handleFile} />
+               <div className="btn-center">
+                  <button type="submit" className="submit-btn">
+                     Enregistrer
+                  </button>
+               </div>
+            </form>
+         </section>
+         <footer>
+            <Footer />
+         </footer>
+      </>
    );
 }
 

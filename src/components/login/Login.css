@@ -12,9 +12,7 @@
 }
 .title{
     margin-bottom: 6%;
-
 }
-
 
 .log-form {
     font-weight: bold;
@@ -55,20 +53,6 @@ p {
 .btn-forget:hover {
     background-color: #e9b31f;
 }
-
-
-/* .loginEmail::placeholder,
-.loginPassword::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-} */
-
-/* button:hover {
-    background: var(--clr-3);
-} */
-
-/* p {
-    color: white;
-} */
 
 /* Media query pour les appareils de petite taille */
 @media screen and (max-width: 768px) {

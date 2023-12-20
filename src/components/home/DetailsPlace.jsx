@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import "./detailsPlace.css";
 import { useLocation } from "react-router-dom";
+import Navbar from "../layouts/NavBar";
+import Footer from "../footer/footer";
+import RenderRate from "./RenderRate";
+import { useStatus } from "../status/StatusContext";
 
 function DetailsPlace() {
+   const { idUser } = useStatus();
    const placeId = useLocation().state;
    const [place, setPlace] = useState([]);
    const [ratings, setRatings] = useState([]);
    const [avgRating, setAvgRating] = useState("");
    const [avgStarRating, setAvgStarRating] = useState("");
    const [ratingsCount, setRatingsCount] = useState("");
-   const [review, setReview] = useState([]);
-   const [rate, setRate] = useState([]);
 
    const recupPlace = async () => {
       try {
@@ -25,6 +28,16 @@ function DetailsPlace() {
          const $message = "Erreur dans la récupération du fetch";
          console.log($message);
       }
+   };
+
+   const renderStarRates = () => {
+      let $stars = 0;
+      let $renderStars = "";
+      while ($stars < avgStarRating) {
+         $renderStars += "⭐";
+         $stars++;
+      }
+      return $renderStars;
    };
 
    useEffect(() => {
@@ -51,15 +64,17 @@ function DetailsPlace() {
                   return (
                      <>
                         <div className="detailsPlaceLeftSection" key={index}>
-                           <img className="detailsPlaceImage" src="{element.image}" />;
+                           <img className="detailsPlaceImage" src={element.image} />;
                            <div className="averageRate">
                               Note générale: {avgRating} {renderStarRates()} ({ratingsCount})
                            </div>
-                           <div className="detailsPlaceBtnModif">
-                              <button className="btnEdit" onClick={handleDelete}>
-                                 Supprimer
-                              </button>
-                           </div>
+                           {element.user_id === idUser ? (
+                              <div className="detailsPlaceBtnModif">
+                                 <button className="btnEdit" onClick={handleDelete}>
+                                    Supprimer
+                                 </button>
+                              </div>
+                           ) : null}
                         </div>
                         ;
                         <div className="elementDetailsPlaceContainer">
@@ -72,7 +87,6 @@ function DetailsPlace() {
                                        <div key={index}>
                                           <h5>#{element.name}</h5>
                                        </div>
-                                       ;
                                     </>
                                  );
                               })}
@@ -86,7 +100,6 @@ function DetailsPlace() {
                               </div>
                            </div>
                         </div>
-                        ;
                      </>
                   );
                })}
@@ -95,125 +108,20 @@ function DetailsPlace() {
       );
    };
 
-   const createRate = async (e) => {
-      e.preventDefault();
-      let options = {
-         method: "POST",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify({
-            review: review,
-            rate: rate,
-            place_id: place[0].id,
-            user_id: 1,
-         }),
-      };
-      await fetch(`${import.meta.env.VITE_API_URL}/rates`, options)
-         .then((response) => response.json())
-         .then((data) => {
-            if (data.success) {
-               alert("Votre avis a bien ete pris en compte");
-            } else {
-               alert(data.message);
-            }
-         });
-   };
-
-   const renderRates = () => {
-      return ratings?.map((element, index) => {
-         const rateId = element.id;
-         const stars = [];
-
-         for (let i = 0; i < element.rate; i++) {
-            stars.push(<span key={i}>⭐</span>);
-         }
-         return (
-            <div className="renderRateDetailsPlace" key={index}>
-               <div className="renderStarRate">{stars}</div>
-               <p>{element.review}</p>
-               <button className="btnDeleteRate" onClick={() => deleteRate(rateId)}>
-                  🗑️
-               </button>
-            </div>
-         );
-      });
-   };
-
-   const renderStarRates = () => {
-      let $stars = 0;
-      let $renderStars = "";
-      while ($stars < avgStarRating) {
-         $renderStars += "⭐";
-         $stars++;
-      }
-      return $renderStars;
-   };
-
-   const deleteRate = async (rateId) => {
-      try {
-         const result = await fetch(`${import.meta.env.VITE_API_URL}/rates/${rateId}`, {
-            method: "DELETE",
-         });
-         const data = await result.json();
-         console.warn(data);
-      } catch (error) {
-         console.error("Erreur dans la suppression de l'avis", error);
-      }
-   };
-
    return (
       <>
+         <nav>
+            <Navbar />
+         </nav>
          <div className="detailsPlaceContainer">
-            <div>{/* Emplacement navbar */}</div>
             <section>
                <div className="showContainer">{renderPlace()}</div>
             </section>
-            <section>
-               <div id="review">
-                  <div className="span1">
-                     <h2 className="titleComment">Donnez nous votre avis !</h2>
-                     <form className="form-horizontal" id="ratingForm" onSubmit={createRate} name="ratingForm">
-                        <label>Votre note</label>
-                        <div className="rate">
-                           <input type="radio" id="star5" name="rate" value="5" onChange={(e) => setRate(e.target.value)} />
-                           <label htmlFor="star5" title="5">
-                              5 stars
-                           </label>
-                           <input type="radio" id="star4" name="rate" value="4" onChange={(e) => setRate(e.target.value)} />
-                           <label htmlFor="star4" title="4">
-                              4 stars
-                           </label>
-                           <input type="radio" id="star3" name="rate" value="3" onChange={(e) => setRate(e.target.value)} />
-                           <label htmlFor="star3" title="3">
-                              3 stars
-                           </label>
-                           <input type="radio" id="star2" name="rate" value="2" onChange={(e) => setRate(e.target.value)} />
-                           <label htmlFor="star2" title="2">
-                              2 stars
-                           </label>
-                           <input type="radio" id="star1" name="rate" value="1" onChange={(e) => setRate(e.target.value)} />
-                           <label htmlFor="star1" title="1">
-                              1 star
-                           </label>
-                        </div>
-                        <div className="form-group">
-                           <label>Votre commentaire</label>
-                           <textarea className="commentArea" name="review" onChange={(e) => setReview(e.target.value)} required></textarea>
-                        </div>
-                        <div className="form-group">
-                           <input className="btnComment" type="submit" value="Envoyer" />
-                        </div>
-                     </form>
-                  </div>
-                  <div className="span2">
-                     <h2 className="titleComment">Commentaires</h2>
-                     <div>{renderRates()}</div>
-                  </div>
-               </div>
-            </section>
-            <footer>{/* emplacement footer */}</footer>
+            <RenderRate ratings={ratings} avgStarRating={avgStarRating} place={place} />
          </div>
+         <footer>
+            <Footer />
+         </footer>
       </>
    );
 }

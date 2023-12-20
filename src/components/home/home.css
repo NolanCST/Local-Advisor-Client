@@ -4,6 +4,7 @@
 
 .placeTitle {
    font-size: xx-large;
+   padding: 25px 0;
 }
 
 .renderHomeContainer {
@@ -12,6 +13,7 @@
    align-items: center;
    padding: 5%;
    background-color: var(--clr-4);
+   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .renderHomeContainer2 {
@@ -26,13 +28,48 @@
    height: 15vh;
    background-color: var(--clr-5);
    border-radius: 10px 10px 10px 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.filterSearch {
+   width: 70%;
+   height: 40%;
+   border-radius: 50px;
+   border: 1px solid gray;
+}
+
+.filterSearch::placeholder {
+   font-size: 30px;
+   position: absolute;
+   top: 7px;
+   left: 10px;
 }
 
 .filter2 {
    width: 15vw;
-   height: 70vh;
+   padding: 5px;
    background-color: var(--clr-5);
    border-radius: 0 0 10px 10px;
+}
+
+.cityFilter {
+   margin: 0 0 10% 5%;
+}
+
+.categoriesFilterCity {
+   width: 80%;
+}
+
+.categoriesFilter {
+   display: flex;
+   flex-direction: column;
+   margin-left: 5%;
+}
+
+.categoriesFilterTitle {
+   margin-bottom: 3%;
 }
 
 .renderPlacesContainer {
@@ -88,4 +125,8 @@
 .categoriesContainer {
    display: flex;
    flex-direction: row;
+}
+
+.avgRateContainer {
+   margin-top: 3%;
 }
