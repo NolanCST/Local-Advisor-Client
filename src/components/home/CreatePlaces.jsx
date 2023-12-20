@@ -3,8 +3,10 @@ import "./CreatePlaces.css";
 import Footer from "../footer/footer";
 import Navbar from "../layouts/NavBar";
 import { useNavigate } from "react-router-dom";
+import { useStatus } from "../status/StatusContext";
 
 function CreatePlaces() {
+   const { idUser } = useStatus();
    const [formData, setFormData] = useState({
       name: "",
       address: "",
@@ -93,7 +95,7 @@ function CreatePlaces() {
       for (var i = 0; i < selectedCategoriesId.length; i++) {
          formDataToSend.append("categories[]", selectedCategoriesId[i]);
       }
-      formDataToSend.append("user_id", 1);
+      formDataToSend.append("user_id", idUser);
       try {
          const response = await fetch(`${import.meta.env.VITE_API_URL}/places`, {
             method: "POST",
