@@ -111,7 +111,7 @@ function RenderRate(props) {
             rate: newRate,
          }),
       };
-      console.log(options);
+
       try {
          const response = await fetch(`${import.meta.env.VITE_API_URL}/rates/${rateId}`, options);
          const data = await response.json();
