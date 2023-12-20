@@ -63,8 +63,6 @@ function Navbar() {
                 } else {
                     console.error("Error fetching user status");
                 }
-            } else {
-                console.error("Tokken error");
             }
         } catch (error) {
             console.error("Erreur:", error);
