@@ -2,6 +2,7 @@ import { useStatus } from "../status/StatusContext";
 import { useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { useState } from "react";
+import logo from "./Corgi_guge-removebg-preview.png";
 
 function Navbar() {
    const { status } = useStatus();
@@ -50,7 +51,7 @@ function Navbar() {
          <nav className={`navTag ${isOpen ? "open" : ""}`}>
             {/* <div class="sidebar"> */}
             <a className="imageLink" href="/">
-               <img className="logoSmall" src="src\components\layouts\Corgi_guge-removebg-preview.png" />
+               <img className="logoSmall" src={logo} />
             </a>
             <div className="navbar">
                <ul className="navbarListLeft">
