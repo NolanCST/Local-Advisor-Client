@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./home.css";
 import Footer from "../footer/footer";
-import Navbar from "../layouts/NavBar";
+import Navbar from "../layouts/Navbar";
 
 function Home() {
    const [places, setPlaces] = useState([]);

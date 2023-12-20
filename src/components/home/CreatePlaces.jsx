@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./CreatePlaces.css";
 import Footer from "../footer/footer";
-import Navbar from "../layouts/NavBar";
+import Navbar from "../layouts/Navbar";
 import { useNavigate } from "react-router-dom";
 
 function CreatePlaces() {

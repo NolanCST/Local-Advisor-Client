@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // hook pour rediriger vers une page
 
 import "./Login.css";
-import Navbar from "../layouts/NavBar";
+import Navbar from "../layouts/Navbar";
 import Footer from "../footer/footer";
 
 function Login() {

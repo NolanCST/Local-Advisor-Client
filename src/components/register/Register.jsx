@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"; // hook pour rediriger vers une 
 
 import "./Register.css";
 import Footer from "../footer/footer";
-import Navbar from "../layouts/NavBar";
+import Navbar from "../layouts/Navbar";
 
 function Register() {
    const [lastname, setLastname] = useState("");

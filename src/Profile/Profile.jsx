@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./profile.css";
 import Footer from "../components/footer/footer";
-import Navbar from "../components/layouts/NavBar";
+import Navbar from "../components/layouts/Navbar";
 
 function Profile() {
    // Objets
