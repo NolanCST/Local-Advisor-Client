@@ -6,7 +6,11 @@ function Navbar() {
    const [status, setStatus] = useState("");
    const navigate = useNavigate();
    const token = localStorage.getItem("token");
+   const [isOpen, setIsOpen] = useState(false); // état pour gérer l'affichage du menu sur mobile
 
+   const toggleMenu = () => {
+      setIsOpen(!isOpen);
+   };
    async function handleLogout() {
       const isConfirmed = window.confirm("Êtes-vous sûr de vouloir vous déconnecter ?");
 
@@ -71,8 +75,18 @@ function Navbar() {
    }, []);
 
    return (
-      <div>
-         <nav className="navTag">
+    <div>
+    {/* Menu Hamburger pour les petits écrans */}
+    <div className="hamburgerMenu" onClick={toggleMenu}>
+       <div className={isOpen ? "line line1 active" : "line line1"}></div>
+       <div className={isOpen ? "line line2 active" : "line line2"}></div>
+       <div className={isOpen ? "line line3 active" : "line line3"}></div>
+    </div>
+      
+
+        
+    <nav className={`navTag ${isOpen ? "open" : ""}`}>
+    <div class="sidebar">
             <a className="imageLink" href="/">
                <img className="logoSmall" src="src\components\layouts\Corgi_guge-removebg-preview.png" />
             </a>
@@ -120,6 +134,7 @@ function Navbar() {
                      </>
                   )}
                </ul>
+            </div>
             </div>
          </nav>
       </div>
