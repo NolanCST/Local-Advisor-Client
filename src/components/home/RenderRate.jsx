@@ -1,8 +1,10 @@
 import { useState } from "react";
 import "./renderRate.css";
 import Vote from "./vote";
+import { useStatus } from "../status/StatusContext";
 
 function RenderRate(props) {
+   const { idUser } = useStatus();
    const [review, setReview] = useState("");
    const [rate, setRate] = useState([]);
    const [newReview, setNewReview] = useState("");
@@ -59,6 +61,7 @@ function RenderRate(props) {
          if (element.image != null) {
             renderImgRate = element.image;
          }
+
          return (
             <div className="renderRateDetailsPlace" key={index}>
                {editMode === rateId ? (
@@ -78,15 +81,16 @@ function RenderRate(props) {
                      <p>{element.review}</p>
                   </div>
                )}
-               <div>
-                  <button className="btnEditRate" onClick={() => enterEditMode(rateId)}>
-                     ✏️
-                  </button>
-                  <button className="btnDeleteRate" onClick={() => deleteRate(rateId)}>
-                     🗑️
-                  </button>
-               </div>
-
+               {element.user_id === idUser ? (
+                  <div>
+                     <button className="btnEditRate" onClick={() => enterEditMode(rateId)}>
+                        ✏️
+                     </button>
+                     <button className="btnDeleteRate" onClick={() => deleteRate(rateId)}>
+                        🗑️
+                     </button>
+                  </div>
+               ) : null}
                <Vote />
             </div>
          );

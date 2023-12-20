@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
+import { useStatus } from "../status/StatusContext";
 
 function Navbar() {
-   const [status, setStatus] = useState("");
+   const { status } = useStatus();
    const navigate = useNavigate();
-   const token = localStorage.getItem("token");
 
    async function handleLogout() {
       const isConfirmed = window.confirm("Êtes-vous sûr de vouloir vous déconnecter ?");
@@ -40,35 +39,6 @@ function Navbar() {
          }
       }
    }
-
-   async function getUserStatus() {
-      try {
-         if (token) {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/user`, {
-               method: "GET",
-               headers: {
-                  "Content-Type": "application/json",
-                  Authorization: "Bearer " + token,
-               },
-            });
-
-            if (response.ok) {
-               const data = await response.json();
-               setStatus(data.status);
-            } else {
-               console.error("Error fetching user status");
-            }
-         } else {
-            console.error("Tokken error");
-         }
-      } catch (error) {
-         console.error("Erreur:", error);
-      }
-   }
-
-   useEffect(() => {
-      getUserStatus();
-   }, []);
 
    return (
       <div>
