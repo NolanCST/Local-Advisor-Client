@@ -81,7 +81,6 @@ function Profile() {
          const response = await fetch(`${import.meta.env.VITE_API_URL}/user/profile/update`, options);
          if (response.ok) {
             const data = await response.json();
-            console.log(data);
          } else {
             console.error("Impossible d'update les données utilisateur");
          }

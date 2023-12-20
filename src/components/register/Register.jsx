@@ -20,7 +20,6 @@ function Register() {
    const handleRegister = async (e) => {
       e.preventDefault();
 
-      console.log("TEST");
       let options = {
          method: "POST",
          headers: {
@@ -36,7 +35,6 @@ function Register() {
             status: status,
          }),
       };
-      console.log("option", options);
 
       await fetch(`${import.meta.env.VITE_API_URL}/register`, options)
          .then((response) => response.json()) // Récupère la réponse au format JSON

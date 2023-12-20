@@ -57,7 +57,6 @@ function DetailsPlace() {
    };
 
    const renderPlace = () => {
-      console.log(place);
       return (
          <>
             <div className="elementPlaceContainer">
