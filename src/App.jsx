@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import Home from "./components/home/Home";
-import Profile from "./Profile/profile";
+import Profile from "./Profile/Profile";
 import DetailsPlace from "./components/home/DetailsPlace";
 import CreatePlaces from "./components/home/CreatePlaces";
 import ForgotPassword from "./components/forgotPassword/forgotPassword";
