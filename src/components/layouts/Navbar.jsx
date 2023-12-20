@@ -1,9 +1,11 @@
+
+import { useStatus } from "../status/StatusContext";
 import { useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { useEffect, useState } from "react";
 
 function Navbar() {
-   const [status, setStatus] = useState("");
+   const { status } = useStatus();
    const navigate = useNavigate();
    const token = localStorage.getItem("token");
    const [isOpen, setIsOpen] = useState(false);
@@ -47,37 +49,7 @@ function Navbar() {
         }
     }
 
-    async function getUserStatus() {
-        try {
-            if (token) {
-                const response = await fetch(
-                    `${import.meta.env.VITE_API_URL}/user`,
-                    {
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: "Bearer " + token,
-                        },
-                    }
-                );
-
-                if (response.ok) {
-                    const data = await response.json();
-                    setStatus(data.status);
-                } else {
-                    console.error("Error fetching user status");
-                }
-            }
-        } catch (error) {
-            console.error("Erreur:", error);
-        }
-    }
-
-    useEffect(() => {
-        getUserStatus();
-    }, []);
-
-  return (
+    return (
     <div>
         {/* Menu Hamburger pour les petits écrans */}
       <div className="hamburgerMenu" onClick={toggleMenu}>
@@ -88,10 +60,7 @@ function Navbar() {
       <nav className={`navTag ${isOpen ? "open" : ""}`}>
         <div class="sidebar">
           <a className="imageLink" href="/">
-            <img
-              className="logoSmall"
-              src="src\components\layouts\Corgi_guge-removebg-preview.png"
-            />
+            <img className="logoSmall" src="src\components\layouts\Corgi_guge-removebg-preview.png" />
           </a>
           <div className="navbar">
             <ul className="navbarListLeft">

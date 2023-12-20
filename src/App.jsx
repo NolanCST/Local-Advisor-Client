@@ -8,6 +8,7 @@ import DetailsPlace from "./components/home/DetailsPlace";
 import CreatePlaces from "./components/home/CreatePlaces";
 import ForgotPassword from "./components/forgotPassword/forgotPassword";
 import ResetPasswordPage from "./components/ResetPassword/ResetPasswordPage";
+import { StatusProvider } from "./components/status/StatusContext";
 
 function App() {
    const router = createBrowserRouter([
@@ -51,7 +52,9 @@ function App() {
    ]);
    return (
       <>
-         <RouterProvider router={router} />
+         <StatusProvider>
+            <RouterProvider router={router} />
+         </StatusProvider>
       </>
    );
 }

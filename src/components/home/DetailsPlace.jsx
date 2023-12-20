@@ -4,8 +4,10 @@ import { useLocation } from "react-router-dom";
 import Navbar from "../layouts/NavBar";
 import Footer from "../footer/footer";
 import RenderRate from "./RenderRate";
+import { useStatus } from "../status/StatusContext";
 
 function DetailsPlace() {
+   const { idUser } = useStatus();
    const placeId = useLocation().state;
    const [place, setPlace] = useState([]);
    const [ratings, setRatings] = useState([]);
@@ -66,11 +68,13 @@ function DetailsPlace() {
                            <div className="averageRate">
                               Note générale: {avgRating} {renderStarRates()} ({ratingsCount})
                            </div>
-                           <div className="detailsPlaceBtnModif">
-                              <button className="btnEdit" onClick={handleDelete}>
-                                 Supprimer
-                              </button>
-                           </div>
+                           {element.user_id === idUser ? (
+                              <div className="detailsPlaceBtnModif">
+                                 <button className="btnEdit" onClick={handleDelete}>
+                                    Supprimer
+                                 </button>
+                              </div>
+                           ) : null}
                         </div>
                         ;
                         <div className="elementDetailsPlaceContainer">
@@ -96,7 +100,6 @@ function DetailsPlace() {
                               </div>
                            </div>
                         </div>
-                        ;
                      </>
                   );
                })}
