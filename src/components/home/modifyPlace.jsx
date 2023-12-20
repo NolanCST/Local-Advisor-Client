@@ -14,11 +14,11 @@ function ModifyPlace() {
    const city = useLocation().state[5];
 
    const [editedData, setEditedData] = useState({
-      name: "",
-      address: "",
-      city: "",
-      zip_code: "",
-      description: "",
+      name: name,
+      address: address,
+      city: city,
+      zip_code: zip_code,
+      description: description,
    });
 
    const handleSubmit = async (e) => {
