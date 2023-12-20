@@ -122,3 +122,46 @@
    align-items: center;
    gap: 5%;
 }
+@media (max-width: 768px) {
+  
+   .filter2 {
+      width: 100%;
+     
+   }
+   .renderHomeContainer2 {
+      flex-direction: column;
+   }
+   .placeContainer {
+  width: 87vw;
+   }
+   .placeImageElement {
+      width: 130px;
+      height: auto;
+   }
+   .detailsPlaceImage {
+      width: 89vw;
+   }
+   .all {
+      flex-direction: column;
+   }
+   .btnEdit {
+      width: 100%;
+   }
+   .precisionDetailsPlace {
+    
+     flex-direction: column;
+   }
+   .mapsDetailsPlace {
+      width: 70vw;
+      height: 80vw;
+   
+   }
+   .elementDetailsPlaceContainer{
+      padding: 0;
+   }
+   .addressDetailsPlace {
+    margin-top: -40px;
+   }
+
+   
+   }

@@ -105,3 +105,10 @@ span2 {
    display: flex;
    flex-direction: row;
 }
+@media (max-width: 768px) {
+   .renderRateDetailsPlace {
+      flex-direction: column;
+   }
+   
+ 
+}

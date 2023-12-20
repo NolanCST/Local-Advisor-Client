@@ -54,7 +54,7 @@ nav.links a {
    width: 110px;
    
  }
-@media (max-width: 500px) {
+@media (max-width: 768px) {
    .logo {
       display: none;
    }
@@ -68,5 +68,8 @@ nav.links a {
    }
    .links {
       font-size: 80%;
+   }
+   .container {
+     padding: 0;
    }
 }
