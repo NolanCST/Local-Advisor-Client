@@ -65,13 +65,13 @@ function ModifyPlace() {
                 <Navbar />
             </nav>
             <div className="modifyPlaceContainer">
-                <h3>Modification du lieu</h3>
                 <section>
                     <form
                         encType="multipart/form-data"
                         className="place-form"
                         onSubmit={handleSubmit}
                     >
+                        <h3>Modification de l'activité:</h3>
                         <label htmlFor="name">Titre de l'activité:</label>
                         <input
                             className="form-input"

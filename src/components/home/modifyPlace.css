@@ -1,3 +1,4 @@
+/* Styles de base */
 .place-form {
     max-width: 600px;
     margin: 20px auto;
@@ -5,6 +6,10 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    text-align: center;
 }
 
 .place-form label {
@@ -29,25 +34,52 @@
     margin-bottom: 15px;
 }
 
-.submit-btn {
+.btn-center {
+    text-align: center;
+    margin-top: 20px; /* Espacement du haut pour séparer du formulaire */
+}
+
+/* Styles pour les boutons */
+.btn-center button,
+.btn-center input[type="submit"] {
     background-color: rgb(173, 32, 32);
     color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
+    display: inline-block;
+    margin: 0 5px;
     cursor: pointer;
 }
 
-.submit-btn:hover {
+.btn-center button:hover,
+.btn-center input[type="submit"]:hover {
     background-color: #e9b31f;
 }
 
-.btn-center {
-    text-align: center;
+/* Styles responsives */
+@media screen and (max-width: 768px) {
+    .place-form {
+        padding: 15px;
+    }
+
+    .form-input {
+        font-size: 14px;
+    }
 }
 
-.size-textarea {
-    width: 100%;
-    height: 5vw;
-    resize: none;
+@media screen and (max-width: 480px) {
+    .place-form {
+        max-width: 90%;
+    }
+
+    .form-input {
+        font-size: 12px;
+    }
+
+    .btn-center button,
+    .btn-center input[type="submit"] {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
 }
