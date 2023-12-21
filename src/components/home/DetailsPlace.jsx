@@ -4,8 +4,10 @@ import { Link, useLocation } from "react-router-dom";
 import Navbar from "../layouts/NavBar";
 import Footer from "../footer/footer";
 import RenderRate from "./RenderRate";
+import { useStatus } from "../status/StatusContext";
 
 function DetailsPlace() {
+   const { idUser } = useStatus();
    const placeId = useLocation().state;
    const [place, setPlace] = useState([]);
    const [ratings, setRatings] = useState([]);
@@ -55,6 +57,7 @@ function DetailsPlace() {
    };
 
    const renderPlace = () => {
+      console.log(place);
       return (
          <>
             <div className="elementPlaceContainer">
@@ -62,22 +65,24 @@ function DetailsPlace() {
                   return (
                      <>
                         <div className="detailsPlaceLeftSection" key={index}>
-                           <img className="detailsPlaceImage" src={element.image} />
-                           <div className="averageRate">
-                              Note générale: {avgRating} {renderStarRates()} ({ratingsCount})
-                           </div>
-                           <div className="detailsPlaceBtnModif">
-                              <Link to={`/ModifyPlace/${placeId}`} state={[placeId, element.name, element.description, element.address, element.zip_code, element.city]}>
-                                 <button className="btnEdit">Modifier</button>
-                              </Link>
-                           </div>
-                           <div className="detailsPlaceBtnModif">
-                              <button className="btnEdit" onClick={handleDelete}>
-                                 Supprimer
-                              </button>
-                           </div>
+                           <div className="all">
+                              <img className="detailsPlaceImage" src={element.image} />
+                              <div className="averageRate">
+                                  Note générale: {avgRating} {renderStarRates()} ({ratingsCount})
+                              </div>
+                           {element.user_id === idUser ? (
+                              <div className="detailsPlaceBtnModif">
+                                 <Link to={`/ModifyPlace/${placeId}`} state={[placeId, element.name, element.description, element.address, element.zip_code, element.city]}>
+                                    <button className="btnEdit">Modifier</button>
+                                 </Link>
+                              </div>
+                              <div className="detailsPlaceBtnModif">
+                                 <button className="btnEdit" onClick={handleDelete}>
+                                    Supprimer
+                                 </button>
+                              </div>
+                           ) : null}
                         </div>
-
                         <div className="elementDetailsPlaceContainer">
                            <h1 className="detailsPlaceTilte">{element.name}</h1>
                            <p className="detailsPlaceDescription">{element.description}</p>
@@ -99,7 +104,7 @@ function DetailsPlace() {
                                  <h4>{element.zip_code}</h4>
                                  <h4>{element.city}</h4>
                               </div>
-                           </div>
+                           </div></div>
                         </div>
                      </>
                   );

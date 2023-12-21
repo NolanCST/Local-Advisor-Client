@@ -1,5 +1,6 @@
 import React from "react";
 import "./footer.css";
+import logo from "./Corgi_guge-removebg-preview.png";
 
 function Footer() {
   const token = localStorage.getItem("token");
@@ -21,9 +22,6 @@ function Footer() {
         <nav className='links'>
           <div>
             <a href="/">Accueil</a>
-          </div>
-          <div>
-            <a href="/create">Publier un lieu</a>
           </div>
           <div>
             <a href="/profile">Voir mon profil</a>
