@@ -38,7 +38,6 @@ function ModifyPlace() {
                description: editedData.description,
             }),
          };
-         console.log(options);
          const result = await fetch(`${import.meta.env.VITE_API_URL}/places/${placeId}`, options);
          const data = await result.json();
          alert("Votre lieu a bien été modifié");
@@ -76,13 +75,7 @@ function ModifyPlace() {
                      <input type="submit" value="Enregistrer" />
                   </div>
                   <div className="btn-center">
-                     <button
-                        type="button"
-                        onClick={
-                           () => navigate(`/`)
-                           // navigate(`/DetailsPlace/${placeId}`)
-                        }
-                     >
+                     <button type="button" onClick={() => navigate(`/`)}>
                         Annuler
                      </button>
                   </div>

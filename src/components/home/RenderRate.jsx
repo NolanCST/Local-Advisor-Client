@@ -45,7 +45,7 @@ function RenderRate(props) {
             console.error("Error:", error);
          }
       } else {
-         console.log("Vous devez être connecté en tant que membre pour mettre un commentaire");
+         alert("Vous devez être connecté en tant que membre pour mettre un commentaire");
       }
    };
 

@@ -6,7 +6,6 @@ import { useStatus } from "../status/StatusContext";
 import { Link } from "react-router-dom";
 
 function Profile() {
-   // Objets
    const { status, idUser } = useStatus();
    const [userPlaces, setUserPlaces] = useState([]);
    const [firstName, setFirstName] = useState("");

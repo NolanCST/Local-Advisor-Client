@@ -41,7 +41,6 @@ function Register() {
          .then((data) => {
             if (data.success) {
                navigate("/login");
-               //window.location.href("../login/Login.jsx");
             } else {
                alert(data.message);
             }
@@ -62,84 +61,34 @@ function Register() {
                      Nom:
                   </label>
                   <br />
-                  <input
-                     name="name"
-                     className="input-formR"
-                     type="text"
-                     // placeholder="Nom"
-                     value={lastname}
-                     onChange={(e) => setLastname(e.target.value)}
-                     required
-                  />
+                  <input name="name" className="input-formR" type="text" value={lastname} onChange={(e) => setLastname(e.target.value)} required />
                   <br />
                   <label className="reg-form" htmlFor="firstname">
                      Prenom:
                   </label>
                   <br />
-                  <input
-                     name="firstname"
-                     className="input-formR"
-                     type="text"
-                     // placeholder="Prenom"
-                     value={firstname}
-                     onChange={(e) => setFirstname(e.target.value)}
-                     required
-                  />
+                  <input name="firstname" className="input-formR" type="text" value={firstname} onChange={(e) => setFirstname(e.target.value)} required />
                   <br />
                   <label className="reg-form" htmlFor="email">
                      Adresse mail:
                   </label>
                   <br />
-                  <input
-                     className="input-formR"
-                     type="email"
-                     // placeholder="Email"
-                     value={email}
-                     onChange={(e) => setEmail(e.target.value)}
-                     required
-                  />{" "}
-                  <br />
+                  <input className="input-formR" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required /> <br />
                   <label className="reg-form" htmlFor="password">
                      Mot de passe:
                   </label>
                   <br />
-                  <input
-                     name="password"
-                     className="input-formR"
-                     type="password"
-                     // placeholder="Password"
-                     value={password}
-                     onChange={(e) => setPassword(e.target.value)}
-                     required
-                  />{" "}
-                  <br />
+                  <input name="password" className="input-formR" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required /> <br />
                   <label className="reg-form" htmlFor="pseudo">
                      Pseudo:
                   </label>
                   <br />
-                  <input
-                     name="pseudp"
-                     className="input-formR"
-                     type="text"
-                     // placeholder="Pseudo"
-                     value={pseudo}
-                     onChange={(e) => setPseudo(e.target.value)}
-                     required
-                  />{" "}
-                  <br />
+                  <input name="pseudp" className="input-formR" type="text" value={pseudo} onChange={(e) => setPseudo(e.target.value)} required /> <br />
                   <label className="reg-form" htmlFor="birthday">
                      Date de naissance:
                   </label>
                   <br />
-                  <input
-                     name="birthday"
-                     className="input-formR"
-                     type="date"
-                     // placeholder="Date de Naissance"
-                     value={birthday}
-                     onChange={(e) => setBirthday(e.target.value)}
-                     required
-                  />
+                  <input name="birthday" className="input-formR" type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} required />
                   <br />
                   <select className="input-formR" onChange={(e) => setStatus(e.target.value)} required>
                      <option value="">Choisir un statut</option>
