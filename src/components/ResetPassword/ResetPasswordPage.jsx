@@ -21,8 +21,6 @@ function ResetPasswordPage() {
             return response.json();
          })
          .then((data) => {
-            console.log("Token récupéré :", data.token);
-            console.log("adresse email :", data.email);
             setResetToken(data.token);
             setResetEmail(data.email);
          })

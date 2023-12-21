@@ -49,7 +49,6 @@ function Navbar() {
             <div className={isOpen ? "line line3 active" : "line line3"}></div>
          </div>
          <nav className={`navTag ${isOpen ? "open" : ""}`}>
-            {/* <div class="sidebar"> */}
             <a className="imageLink" href="/">
                <img className="logoSmall" src={logo} />
             </a>
@@ -98,7 +97,6 @@ function Navbar() {
                   )}
                </ul>
             </div>
-            {/* </div> */}
          </nav>
       </div>
    );

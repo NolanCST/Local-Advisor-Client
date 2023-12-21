@@ -33,9 +33,6 @@ function Footer() {
                   <a href="/">Accueil</a>
                </div>
                <div>
-                  <a href="/create">Publier un lieu</a>
-               </div>
-               <div>
                   <a href="/profile">Voir mon profil</a>
                </div>
                <div>
