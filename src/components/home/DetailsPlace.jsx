@@ -63,11 +63,11 @@ function DetailsPlace() {
                {place.map((element, index) => {
                   return (
                      <>
-                        <div className="detailsPlaceLeftSection" key={index}>
+                        <div className="detailsPlaceSection" key={index}>
                            <div className="all">
                               <img className="detailsPlaceImage" src={element.image} />
                               <div className="averageRate">
-                                  Note générale: {avgRating} {renderStarRates()} ({ratingsCount})
+                                 Note générale: {avgRating} {renderStarRates()} ({ratingsCount})
                               </div>
                               {element.user_id === idUser ? (
                                  <>
@@ -80,10 +80,11 @@ function DetailsPlace() {
                                        <button className="btnEdit" onClick={handleDelete}>
                                           Supprimer
                                        </button>
-                                    </div></> 
+                                    </div>
+                                 </>
                               ) : null}
                            </div>
-                        
+
                            <div className="elementDetailsPlaceContainer">
                               <h1 className="detailsPlaceTilte">{element.name}</h1>
                               <p className="detailsPlaceDescription">{element.description}</p>

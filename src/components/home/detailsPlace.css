@@ -12,8 +12,14 @@
    padding-bottom: 3%;
 }
 
-.detailsPlaceLeftSection {
+.detailsPlaceSection {
    display: flex;
+   align-items: center;
+}
+
+.all {
+   display: flex;
+   flex-direction: column;
    align-items: center;
 }
 
@@ -123,16 +129,14 @@
 }
 
 @media (max-width: 1200px) {
-  
    .filter2 {
       width: 100%;
-     
    }
    .renderHomeContainer2 {
       flex-direction: column;
    }
    .placeContainer {
-  width: 87vw;
+      width: 87vw;
    }
    .placeImageElement {
       width: 130px;
@@ -148,22 +152,20 @@
       width: 100%;
    }
    .precisionDetailsPlace {
-    
-     flex-direction: column;
+      flex-direction: column;
    }
    .mapsDetailsPlace {
       width: 70vw;
       height: 80vw;
-   
    }
-   .detailsPlaceLeftSection{
+   .detailsPlaceSection {
       flex-direction: column;
    }
-   .elementDetailsPlaceContainer{
+   .elementDetailsPlaceContainer {
       padding: 0;
    }
    .addressDetailsPlace {
-    margin-top: -40px;
+      margin-top: -40px;
    }
    .form-horizontal {
       flex-direction: column;
@@ -172,7 +174,7 @@
       flex-direction: column;
    }
    .commentArea {
-    width: 80vw!important;
+      width: 80vw !important;
    }
    .imgRate {
       padding-top: 20px;
@@ -183,7 +185,6 @@
    }
    .renderRateDetailsPlace {
       width: 60vw !important;
-      margin-right: 20px!important;
-  }
- 
+      margin-right: 20px !important;
    }
+}
