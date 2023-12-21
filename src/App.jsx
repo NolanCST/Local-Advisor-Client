@@ -3,11 +3,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import Home from "./components/home/Home";
-import Profile from "./Profile/profile";
+import Profile from "./components/Profile/Profile";
 import DetailsPlace from "./components/home/DetailsPlace";
 import CreatePlaces from "./components/home/CreatePlaces";
 import ForgotPassword from "./components/forgotPassword/forgotPassword";
 import ResetPasswordPage from "./components/ResetPassword/ResetPasswordPage";
+import ModifyPlace from "./components/home/modifyPlace";
 import { StatusProvider } from "./components/status/StatusContext";
 
 function App() {
@@ -35,6 +36,10 @@ function App() {
       {
          path: "/profile",
          element: <Profile />,
+      },
+      {
+         path: "/modifyPlace/:id",
+         element: <ModifyPlace />,
       },
       {
          path: "/forgotPassword",

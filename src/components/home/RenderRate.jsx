@@ -45,7 +45,7 @@ function RenderRate(props) {
             console.error("Error:", error);
          }
       } else {
-         console.log("Vous devez être connecté en tant que membre pour mettre un commentaire");
+         alert("Vous devez être connecté en tant que membre pour mettre un commentaire");
       }
    };
 
@@ -115,7 +115,7 @@ function RenderRate(props) {
             rate: newRate,
          }),
       };
-      console.log(options);
+
       try {
          const response = await fetch(`${import.meta.env.VITE_API_URL}/rates/${rateId}`, options);
          const data = await response.json();
