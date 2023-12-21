@@ -39,11 +39,8 @@ function Register() {
       await fetch(`${import.meta.env.VITE_API_URL}/register`, options)
          .then((response) => response.json()) // Récupère la réponse au format JSON
          .then((data) => {
-            if (data.success) {
-               navigate("/login");
-            } else {
-               alert(data.message);
-            }
+            alert(data.message);
+            navigate("/login");
          });
    };
 
@@ -78,7 +75,8 @@ function Register() {
                      Mot de passe:
                   </label>
                   <br />
-                  <input name="password" className="input-formR" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required /> <br />
+                  <input name="password" className="input-formR" type="password" value={password} onChange={(e) => setPassword(e.target.value)} pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*_=+]).{12,}" required /> <br />
+                  <p class="textPassword">*Au moins 12 caractères, un chiffre, une lettre majuscule, une minuscule et un caractère parmi !@#$%^&*_=+.</p>
                   <label className="reg-form" htmlFor="pseudo">
                      Pseudo:
                   </label>
