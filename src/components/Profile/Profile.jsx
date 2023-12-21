@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./profile.css";
 import Footer from "../footer/footer";
-import Navbar from "../layouts/NavBar";
+import Navbar from "../layouts/Navbar";
 import { useStatus } from "../status/StatusContext";
 import { Link } from "react-router-dom";
 

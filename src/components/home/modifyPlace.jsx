@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Navbar from "../layouts/NavBar";
+import Navbar from "../layouts/Navbar";
 import Footer from "../footer/footer";
 import "./modifyPlace.css";
 
