@@ -9,18 +9,6 @@
  
 }
 
-/* Logo Styles /
-.logo {
-    grid-column: 1;
-}
-
-/ infos Styles /
-.infos {
-    grid-column: 2;
-    text-align: left;
-}
-
-/ Links Styles */
 .links {
    grid-column: 3;
    text-align: right;
@@ -60,16 +48,16 @@ nav.links a {
    }
    .container {
       display: flex;
-      padding: 0 8% 0 8%;
+     
    }
 
    .infos {
       font-size: 80%;
+     
+      padding-bottom: 10px;
    }
    .links {
       font-size: 80%;
-   }
-   .container {
-     padding: 0;
+   
    }
 }
