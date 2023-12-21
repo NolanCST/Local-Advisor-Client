@@ -121,6 +121,7 @@
    align-items: center;
    gap: 5%;
 }
+
 @media (max-width: 768px) {
   
    .filter2 {

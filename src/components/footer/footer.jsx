@@ -1,5 +1,6 @@
 import React from "react";
 import "./footer.css";
+import logo from "./Corgi_guge-removebg-preview.png";
 
 function Footer() {
   const token = localStorage.getItem("token");

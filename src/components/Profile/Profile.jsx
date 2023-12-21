@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./profile.css";
-import Footer from "../components/footer/footer";
-import Navbar from "../components/layouts/NavBar";
+import Footer from "../footer/footer";
+import Navbar from "../layouts/NavBar";
+import { useStatus } from "../status/StatusContext";
+import { Link } from "react-router-dom";
 
 function Profile() {
    // Objets
+   const { status, idUser } = useStatus();
+   const [userPlaces, setUserPlaces] = useState([]);
    const [firstName, setFirstName] = useState("");
    const [lastName, setLastName] = useState("");
    const [email, setEmail] = useState("");
@@ -44,7 +48,17 @@ function Profile() {
    }
 
    useEffect(() => {
-      getDataProfile();
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user) {
+         setFirstName(user.firstName);
+         setLastName(user.lastName);
+         setEmail(user.email);
+         setAge(user.birthday);
+         setPseudo(user.pseudo);
+      } else {
+         getDataProfile();
+      }
+      getUserPlaces();
    }, []);
 
    async function updateDataProfile() {
@@ -83,18 +97,49 @@ function Profile() {
       setEdit(!edit);
    }
 
-   useEffect(() => {
-      const user = JSON.parse(localStorage.getItem("user"));
-      if (user) {
-         setFirstName(user.firstName);
-         setLastName(user.lastName);
-         setEmail(user.email);
-         setAge(user.birthday);
-         setPseudo(user.pseudo);
-      } else {
-         getDataProfile();
+   const getUserPlaces = async () => {
+      try {
+         const response = await fetch(`${import.meta.env.VITE_API_URL}/places`);
+         const data = await response.json();
+         setUserPlaces(data.places.filter((place) => place.user_id === idUser));
+      } catch (e) {
+         const $message = "Erreur dans la récupération du fetch";
+         console.log($message);
       }
-   }, []);
+   };
+
+   const renderUserPlaces = () => {
+      return userPlaces?.map((element, index) => {
+         const stars = [];
+         for (let i = 1; i <= element.average_rating; i++) {
+            stars.push(<span key={i}>⭐</span>);
+         }
+         return (
+            <>
+               <Link to={`/DetailsPlace/${element.id}`} state={element.id} style={{ textDecoration: "none" }}>
+                  <div className="placeContainer" key={index}>
+                     <img className="placeImageElement" src={element.image} />
+                     <div className="placeElement">
+                        <p className="placeNameElement">{element.name}</p>
+                        <p className="placeCityElement">{element.city}</p>
+                        <div className="categoriesContainer">
+                           {element.categories.map((element, index) => (
+                              <p className="placeCategoriesElement" key={index}>
+                                 #{element.name}
+                              </p>
+                           ))}
+                        </div>
+                        <div className="avgRateContainer">
+                           {element.average_rating}
+                           {stars}({element.total_rates})
+                        </div>
+                     </div>
+                  </div>
+               </Link>
+            </>
+         );
+      });
+   };
 
    return (
       <>
@@ -146,6 +191,17 @@ function Profile() {
                   </>
                )}
             </div>
+            {status === 1 ? (
+               <>
+                  <div className="userPlaces">
+                     <h1>Vos lieux publiés</h1>
+                     <Link to="/create">
+                        <button className="btnCreate">Publier un nouveau lieu</button>
+                     </Link>
+                     {renderUserPlaces()}
+                  </div>
+               </>
+            ) : null}
          </section>
          <footer>
             <Footer />
