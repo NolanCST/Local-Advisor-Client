@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./detailsPlace.css";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Navbar from "../layouts/NavBar";
 import Footer from "../footer/footer";
 import RenderRate from "./RenderRate";
@@ -64,21 +64,24 @@ function DetailsPlace() {
                {place.map((element, index) => {
                   return (
                      <>
-                     
                         <div className="detailsPlaceLeftSection" key={index}>
                            <div className="all">
-                           <img className="detailsPlaceImage" src={element.image} />
-                           <div className="averageRate">
-                              Note générale: {avgRating} {renderStarRates()} ({ratingsCount})
-                           </div>
+                              <img className="detailsPlaceImage" src={element.image} />
+                              <div className="averageRate">
+                                  Note générale: {avgRating} {renderStarRates()} ({ratingsCount})
+                              </div>
                            {element.user_id === idUser ? (
+                              <div className="detailsPlaceBtnModif">
+                                 <Link to={`/ModifyPlace/${placeId}`} state={[placeId, element.name, element.description, element.address, element.zip_code, element.city]}>
+                                    <button className="btnEdit">Modifier</button>
+                                 </Link>
+                              </div>
                               <div className="detailsPlaceBtnModif">
                                  <button className="btnEdit" onClick={handleDelete}>
                                     Supprimer
                                  </button>
                               </div>
                            ) : null}
-                        
                         </div>
                         <div className="elementDetailsPlaceContainer">
                            <h1 className="detailsPlaceTilte">{element.name}</h1>
