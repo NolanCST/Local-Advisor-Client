@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./detailsPlace.css";
 import { Link, useLocation } from "react-router-dom";
-import Navbar from "../layouts/NavBar";
+import Navbar from "../layouts/Navbar";
 import Footer from "../footer/footer";
 import RenderRate from "./RenderRate";
 import { useStatus } from "../status/StatusContext";
