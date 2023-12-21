@@ -64,8 +64,10 @@ function DetailsPlace() {
                {place.map((element, index) => {
                   return (
                      <>
+                     
                         <div className="detailsPlaceLeftSection" key={index}>
-                           <img className="detailsPlaceImage" src={element.image} />;
+                           <div className="all">
+                           <img className="detailsPlaceImage" src={element.image} />
                            <div className="averageRate">
                               Note générale: {avgRating} {renderStarRates()} ({ratingsCount})
                            </div>
@@ -76,8 +78,8 @@ function DetailsPlace() {
                                  </button>
                               </div>
                            ) : null}
+                        
                         </div>
-                        ;
                         <div className="elementDetailsPlaceContainer">
                            <h1 className="detailsPlaceTilte">{element.name}</h1>
                            <p className="detailsPlaceDescription">{element.description}</p>
@@ -99,7 +101,7 @@ function DetailsPlace() {
                                  <h4>{element.zip_code}</h4>
                                  <h4>{element.city}</h4>
                               </div>
-                           </div>
+                           </div></div>
                         </div>
                      </>
                   );
