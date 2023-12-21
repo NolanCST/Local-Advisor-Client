@@ -43,8 +43,6 @@ function ModifyPlace() {
          const data = await result.json();
          alert("Votre lieu a bien été modifié");
          navigate(`/`);
-         // navigate(`/DetailsPlace/${placeId}`);
-         // navigate(`<DetailsPlace />`);
       } catch (error) {
          console.error("Erreur dans la mise à jour du lieu", error);
       }
