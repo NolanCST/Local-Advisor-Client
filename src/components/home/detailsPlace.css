@@ -14,7 +14,6 @@
 
 .detailsPlaceLeftSection {
    display: flex;
-   flex-direction: column;
    align-items: center;
 }
 
@@ -123,14 +122,68 @@
    gap: 5%;
 }
 
-.renderRateDetailsPlace {
-   display: flex;
-   flex-direction: column;
-   gap: 10px;
-   margin-bottom: 20px;
-}
-
-.renderStarRate {
-   display: flex;
-   flex-direction: row;
-}
+@media (max-width: 768px) {
+  
+   .filter2 {
+      width: 100%;
+     
+   }
+   .renderHomeContainer2 {
+      flex-direction: column;
+   }
+   .placeContainer {
+  width: 87vw;
+   }
+   .placeImageElement {
+      width: 130px;
+      height: auto;
+   }
+   .detailsPlaceImage {
+      width: 89vw;
+   }
+   .all {
+      flex-direction: column;
+   }
+   .btnEdit {
+      width: 100%;
+   }
+   .precisionDetailsPlace {
+    
+     flex-direction: column;
+   }
+   .mapsDetailsPlace {
+      width: 70vw;
+      height: 80vw;
+   
+   }
+   .detailsPlaceLeftSection{
+      flex-direction: column;
+   }
+   .elementDetailsPlaceContainer{
+      padding: 0;
+   }
+   .addressDetailsPlace {
+    margin-top: -40px;
+   }
+   .form-horizontal {
+      flex-direction: column;
+   }
+   .form-group {
+      flex-direction: column;
+   }
+   .commentArea {
+    width: 80vw!important;
+   }
+   .imgRate {
+      padding-top: 20px;
+   }
+   .btnComment {
+      width: 100%;
+      margin: 20px;
+   }
+   .renderRateDetailsPlace {
+      width: 60vw !important;
+      margin-right: 20px!important;
+  }
+ 
+   }

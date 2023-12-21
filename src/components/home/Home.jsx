@@ -120,13 +120,14 @@ function Home() {
          </nav>
          <section>
             <h1 className="placeTitle">LocalAdvisor</h1>
-            <div className="renderHomeContainer">
-               <div className="filter1">
+            <div className="renderHomeContainer" >
+               <div className="filter1" >
                   <input type="text" className="filterSearch" placeholder="Rechercher" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                </div>
-               <div className="renderHomeContainer2">
-                  <div className="filter2">
-                     <div className="cityFilter">
+               <div className="renderHomeContainer2" >
+                  <div className="filter2" >
+                     <div className="cityFilter" >
+                     <div id="categoriesFilter" className="categoriesFilter">
                         <h4 className="categoriesFilterTitle">Choisir une ville :</h4>
                         <select className="categoriesFilterCity" onChange={handleCityChange}>
                            {filterCity()}
@@ -135,6 +136,7 @@ function Home() {
                      <div className="categoriesFilter">
                         <h4 className="categoriesFilterTitle">Choisir des categories :</h4>
                         {filterCategories()}
+                        </div>
                      </div>
                   </div>
                   <div className="renderPlacesContainer">{renderPlaces()}</div>
