@@ -70,41 +70,44 @@ function DetailsPlace() {
                               <div className="averageRate">
                                   Note générale: {avgRating} {renderStarRates()} ({ratingsCount})
                               </div>
-                           {element.user_id === idUser ? (
-                              <div className="detailsPlaceBtnModif">
-                                 <Link to={`/ModifyPlace/${placeId}`} state={[placeId, element.name, element.description, element.address, element.zip_code, element.city]}>
-                                    <button className="btnEdit">Modifier</button>
-                                 </Link>
-                              </div>
-                              <div className="detailsPlaceBtnModif">
-                                 <button className="btnEdit" onClick={handleDelete}>
-                                    Supprimer
-                                 </button>
-                              </div>
-                           ) : null}
-                        </div>
-                        <div className="elementDetailsPlaceContainer">
-                           <h1 className="detailsPlaceTilte">{element.name}</h1>
-                           <p className="detailsPlaceDescription">{element.description}</p>
-                           <div className="categoriesDetailsPlace">
-                              {element.categories.map((element, index) => {
-                                 return (
-                                    <>
-                                       <div key={index}>
-                                          <h5>#{element.name}</h5>
-                                       </div>
-                                    </>
-                                 );
-                              })}
+                              {element.user_id === idUser ? (
+                                 <>
+                                    <div className="detailsPlaceBtnModif">
+                                       <Link to={`/ModifyPlace/${placeId}`} state={[placeId, element.name, element.description, element.address, element.zip_code, element.city]}>
+                                          <button className="btnEdit">Modifier</button>
+                                       </Link>
+                                    </div>
+                                    <div className="detailsPlaceBtnModif">
+                                       <button className="btnEdit" onClick={handleDelete}>
+                                          Supprimer
+                                       </button>
+                                    </div></> 
+                              ) : null}
                            </div>
-                           <div className="precisionDetailsPlace">
-                              <div className="mapsDetailsPlace">Future maps</div>
-                              <div className="addressDetailsPlace">
-                                 <h4>{element.address}</h4>
-                                 <h4>{element.zip_code}</h4>
-                                 <h4>{element.city}</h4>
+                        
+                           <div className="elementDetailsPlaceContainer">
+                              <h1 className="detailsPlaceTilte">{element.name}</h1>
+                              <p className="detailsPlaceDescription">{element.description}</p>
+                              <div className="categoriesDetailsPlace">
+                                 {element.categories.map((element, index) => {
+                                    return (
+                                       <>
+                                          <div key={index}>
+                                             <h5>#{element.name}</h5>
+                                          </div>
+                                       </>
+                                    );
+                                 })}
                               </div>
-                           </div></div>
+                              <div className="precisionDetailsPlace">
+                                 <div className="mapsDetailsPlace">Future maps</div>
+                                 <div className="addressDetailsPlace">
+                                    <h4>{element.address}</h4>
+                                    <h4>{element.zip_code}</h4>
+                                    <h4>{element.city}</h4>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
                      </>
                   );
